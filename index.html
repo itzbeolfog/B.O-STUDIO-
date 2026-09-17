@@ -68,7 +68,8 @@ h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(54px,8vw,100px);line-h
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;
   border-radius:13px;font-size:14px;font-weight:700;border:1px solid var(--line);
-  transition:transform .25s,background .25s,box-shadow .25s
+  transition:transform .25s,background .25s,box-shadow .25s;
+  color:var(--text);font-family:inherit;cursor:pointer;
 }
 .btn:hover{transform:translateY(-3px)}
 .btn.primary{background:#f4f7f8;color:#080a0e;box-shadow:0 12px 35px rgba(255,255,255,.12)}
@@ -88,6 +89,77 @@ h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(54px,8vw,100px);line-h
 .wave{height:130px;display:flex;align-items:center;gap:5px}
 .bar{width:7px;border-radius:20px;background:linear-gradient(to top,var(--accent2),var(--accent));animation:wave 1.15s ease-in-out infinite}
 .bar:nth-child(2n){animation-delay:-.4s}.bar:nth-child(3n){animation-delay:-.75s}
+/* Pricing modal */
+.pricing-overlay{
+  position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+  padding:24px;background:rgba(4,6,10,.72);backdrop-filter:blur(10px);
+}
+.pricing-overlay.open{display:flex}
+.pricing-modal{
+  width:min(620px,100%);max-height:86vh;overflow-y:auto;position:relative;
+  border:1px solid var(--line);border-radius:26px;background:var(--panel);
+  backdrop-filter:blur(22px);box-shadow:var(--shadow);padding:34px 30px;
+  animation:pricingIn .35s ease;
+}
+@keyframes pricingIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.pricing-close{
+  position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:11px;
+  border:1px solid var(--line);background:rgba(255,255,255,.06);display:grid;place-items:center;
+  cursor:pointer;color:var(--text);font-size:17px;line-height:1;transition:.25s;
+}
+.pricing-close:hover{background:rgba(255,255,255,.16)}
+.pricing-modal .eyebrow{margin-bottom:2px}
+.pricing-modal h2{font-size:clamp(26px,4vw,34px)}
+.pricing-tabs{
+  display:flex;gap:6px;margin:24px 0 22px;border:1px solid var(--line);border-radius:14px;
+  padding:5px;background:rgba(255,255,255,.03);
+}
+.pricing-tab{
+  flex:1;text-align:center;padding:11px 10px;border-radius:10px;font-size:13px;font-weight:700;
+  cursor:pointer;color:var(--muted);transition:.25s;border:none;background:transparent;font-family:Inter;
+}
+.pricing-tab.active{background:#f4f7f8;color:#080a0e}
+.pricing-panel{display:none}
+.pricing-panel.active{display:block;animation:pricingIn .3s ease}
+.price-row{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:17px 10px;border-bottom:1px solid var(--line);border-radius:12px;
+  cursor:pointer;transition:background .25s,padding-left .25s;
+}
+.price-row:hover{background:rgba(255,255,255,.055)}
+.price-row:last-of-type{border-bottom:none}
+.price-label{font-size:14.5px;color:var(--text);font-weight:600}
+.price-label small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px;line-height:1.4}
+.price-value{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:16.5px;white-space:nowrap;
+  background:linear-gradient(100deg,#fff 5%,#dfffea 45%,#a9c6ff 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.price-note{margin-top:20px;font-size:11.5px;color:var(--muted);font-style:italic;line-height:1.55}
+.pricing-highlights{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pricing-highlight{
+  font-size:11.5px;font-weight:700;color:var(--accent);
+  border:1px solid rgba(159,245,208,.3);background:rgba(159,245,208,.08);
+  padding:7px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+}
+.pricing-back{
+  display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:12.5px;
+  font-weight:700;cursor:pointer;margin-bottom:18px;transition:.25s;background:none;border:none;font-family:inherit;padding:0;
+}
+.pricing-back:hover{color:var(--text)}
+.pricing-connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.pricing-connect-square{
+  aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:14px 10px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.045);
+  text-align:center;transition:transform .3s,border-color .3s,background .3s;
+}
+.pricing-connect-square:hover{transform:translateY(-5px);border-color:rgba(159,245,208,.4);background:rgba(255,255,255,.09)}
+.pricing-connect-square .pricing-connect-icon{
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;
+  background:rgba(255,255,255,.06);color:var(--accent);flex-shrink:0;
+}
+.pricing-connect-square .pricing-connect-icon svg{width:22px;height:22px}
+.pricing-connect-square span{font-size:11px;color:var(--muted);line-height:1.4}
 .section{padding:110px 0}
 .section-head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:35px}
 .eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-size:11px;font-weight:800}
@@ -216,10 +288,20 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
   .video-grid{grid-template-columns:1fr 1fr}
   .connect-grid{grid-template-columns:1fr}
 }
+@media(max-width:680px){
+  .pricing-connect-grid{grid-template-columns:1fr}
+  .pricing-connect-square{aspect-ratio:auto;flex-direction:row;text-align:left;padding:16px}
+}
 @media(max-width:520px){
   h1{font-size:58px}.process{grid-template-columns:1fr}.stats{grid-template-columns:1fr}
   .hero{padding-top:125px}.section{padding:80px 0}.contact{padding:30px}.footer-row{flex-direction:column;align-items:flex-start}
   .video-grid{grid-template-columns:1fr}
+  .pricing-overlay{padding:14px}
+  .pricing-modal{padding:26px 20px;border-radius:20px}
+  .pricing-modal h2{font-size:26px}
+  .pricing-tab{font-size:11.5px;padding:10px 6px}
+  .price-row{flex-direction:column;align-items:flex-start;gap:4px;padding:15px 6px}
+  .price-value{font-size:15px}
 }
 </style>
 <style>
@@ -312,6 +394,36 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
 .nav,.hero,.section,footer{position:relative;z-index:3}
 @media (prefers-reduced-motion:reduce){#cherryRain{display:none}}
 </style>
+
+<style>
+/* LIVE STREAM HUB */
+.live-status{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;
+  border:1px solid rgba(255,90,105,.35);background:rgba(255,90,105,.08);color:#ff9da7;
+  font:800 11px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase}
+.live-status .live-dot{width:8px;height:8px;border-radius:50%;background:#ff5a69;box-shadow:0 0 16px #ff5a69;animation:livePulse 1.2s infinite}
+@keyframes livePulse{50%{transform:scale(.55);opacity:.45}}
+.live-shell{display:grid;grid-template-columns:1.4fr .6fr;gap:18px}
+.live-player{position:relative;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#080b10;
+  box-shadow:0 18px 55px rgba(0,0,0,.3);aspect-ratio:16/9}
+.live-player iframe{width:100%;height:100%;border:0;display:block}
+.live-placeholder{height:100%;display:grid;place-items:center;padding:30px;text-align:center;color:var(--muted)}
+.live-placeholder h3{font:700 26px "Space Grotesk";color:#fff;margin-bottom:8px}
+.live-placeholder p{max-width:470px;font-size:13px}
+.live-side{border:1px solid var(--line);border-radius:24px;background:var(--panel);padding:24px;display:flex;flex-direction:column;gap:14px}
+.live-side h3{font:700 24px "Space Grotesk"}
+.live-side p{color:var(--muted);font-size:13px}
+.live-link{margin-top:auto;display:inline-flex;justify-content:center;padding:12px 14px;border:1px solid var(--line);
+  border-radius:12px;background:rgba(255,255,255,.05);font-weight:700;font-size:13px}
+.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.archive-card{display:block;border:1px solid var(--line);border-radius:20px;background:var(--panel);overflow:hidden;
+  transition:.3s}
+.archive-card:hover{transform:translateY(-6px);border-color:rgba(159,245,208,.35)}
+.archive-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.archive-info{padding:16px}.archive-info h3{font:700 15px "Space Grotesk";line-height:1.4}
+.archive-info span{display:block;color:var(--muted);font-size:11px;margin-top:8px}
+@media(max-width:850px){.live-shell{grid-template-columns:1fr}.archive-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.archive-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <video id="bgVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -331,6 +443,7 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
     <a href="#services">Services</a>
     <a href="#work">Work</a>
     <a href="#highlighted">Highlighted</a>
+    <a href="#live">Live</a>
     <a href="#videos">Videos</a>
     <a href="#software">Software</a>
     <a href="#contact">Contact</a>
@@ -348,7 +461,7 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
       I create clean, engaging edits and smooth Minecraft animations built for modern YouTube content.</p>
       <div class="actions">
         <a class="btn primary" href="#work">View My Work ↓</a>
-        <a class="btn secondary" href="mailto:beolfoganimation@gmail.com?subject=I%20want%20to%20work%20with%20Beolf%20O.G">Let's Work Together ↗</a>
+        <button type="button" class="btn secondary" onclick="openPricing('editing')">Choose Your Plan & Let's Connect</button>
       </div>
     </div>
 
@@ -490,6 +603,45 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
           <div class="highlight-watch">▶ Watch on YouTube</div>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="live">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">YouTube Live</div>
+        <h2>Live with<br><span class="gradient">Beolf O.G.</span></h2>
+      </div>
+      <div id="liveStatus"><span class="live-status"><span class="live-dot"></span> Checking live status</span></div>
+    </div>
+
+    <div class="live-shell">
+      <div class="live-player" id="livePlayer">
+        <div class="live-placeholder">
+          <div>
+            <h3>Checking YouTube…</h3>
+            <p>When Beolf O.G goes live, the stream player will automatically appear here.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="live-side">
+        <h3 id="liveTitle">YouTube Live</h3>
+        <p id="liveDescription">This area automatically switches between the current livestream and the latest livestream archive.</p>
+        <a class="live-link" id="liveWatch" href="https://youtube.com/@beolfog" target="_blank" rel="noopener">Open YouTube ↗</a>
+      </aside>
+    </div>
+
+    <div style="margin-top:55px" class="section-head reveal">
+      <div><div class="eyebrow">Live Archive</div><h2>Past<br>Livestreams.</h2></div>
+      <p>Finished livestreams are automatically added here after they end. Click a card to open the recording on YouTube.</p>
+    </div>
+    <div class="archive-grid" id="liveArchive">
+      <div class="live-placeholder" style="min-height:180px;grid-column:1/-1">
+        <p>Loading livestream archive…</p>
+      </div>
     </div>
   </div>
 </section>
@@ -818,6 +970,94 @@ footer{padding:35px 0 50px;color:#7e8795;font-size:12px;border-top:1px solid var
 </section>
 </main>
 
+<div class="pricing-overlay" id="pricingOverlay">
+  <div class="pricing-modal">
+    <button type="button" class="pricing-close" onclick="closePricing()" aria-label="Close pricing">✕</button>
+
+    <div id="pricingMain">
+      <div class="eyebrow">Rates</div>
+      <h2>Pricing</h2>
+
+      <div class="pricing-tabs">
+        <button type="button" class="pricing-tab" data-tab="editing" onclick="switchPricingTab('editing')">🎬 Editing Pricing</button>
+        <button type="button" class="pricing-tab" data-tab="animation" onclick="switchPricingTab('animation')">⛏️ Minecraft Animation Pricing</button>
+      </div>
+
+      <div class="pricing-panel" data-panel="editing">
+        <div class="pricing-highlights">
+          <span class="pricing-highlight">✓ 2 revision rounds included</span>
+          <span class="pricing-highlight">⏱ 1–4 day turnaround</span>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">🎬 Video Editing<small>Full YouTube video edit · ~2–4 day turnaround</small></div>
+          <div class="price-value">₹1,500 / video</div>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">📱 Reels/Shorts<small>Short-form vertical edit · ~1–2 day turnaround</small></div>
+          <div class="price-value">₹500 / reel</div>
+        </div>
+        <p class="price-note">*Minimum project: ₹500. Prices may vary depending on the project's complexity, duration, requirements, and overall workload.</p>
+      </div>
+
+      <div class="pricing-panel" data-panel="animation">
+        <div class="pricing-highlights">
+          <span class="pricing-highlight">✓ 1 revision round included</span>
+          <span class="pricing-highlight">⏱ Turnaround scales with length</span>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">Simple Minecraft animation<small>Basic movement, simple scene · ~2–3 day turnaround</small></div>
+          <div class="price-value">₹1,500–₹3,000 / 10 sec</div>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">Detailed animation<small>Combat/action, camera work, effects · ~3–5 day turnaround</small></div>
+          <div class="price-value">₹3,000–₹6,000 / 10 sec</div>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">High-detail cinematic<small>Complex choreography, VFX, environments · ~5–8 day turnaround</small></div>
+          <div class="price-value">₹6,000–₹12,000+ / 10 sec</div>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">30-sec cinematic<small>Full cinematic sequence · ~7–10 day turnaround</small></div>
+          <div class="price-value">₹8,000–₹20,000+</div>
+        </div>
+        <div class="price-row" onclick="openConnect()">
+          <div class="price-label">60-sec cinematic<small>Full cinematic sequence · ~10–15 day turnaround</small></div>
+          <div class="price-value">₹15,000–₹40,000+</div>
+        </div>
+        <p class="price-note">*Minimum project: ₹1,500. Prices may vary depending on the project's complexity, duration, requirements, and overall workload.</p>
+      </div>
+    </div>
+
+    <div id="pricingConnect" style="display:none">
+      <button type="button" class="pricing-back" onclick="backToPricing()">← Back to pricing</button>
+      <div class="eyebrow">Let's talk</div>
+      <h2>Ready to Create<br>Something <span class="gradient">Epic?</span></h2>
+      <p style="color:var(--muted);font-size:14px;margin-top:10px">Connect with me</p>
+
+      <div class="pricing-connect-grid">
+        <a class="pricing-connect-square" href="https://discord.gg/F2HaXSZ5WX" target="_blank" rel="noopener">
+          <span class="pricing-connect-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.369A19.79 19.79 0 0 0 15.885 3c-.211.375-.444.879-.608 1.278a18.27 18.27 0 0 0-5.487 0A12.64 12.64 0 0 0 9.182 3a19.74 19.74 0 0 0-4.435 1.372C1.865 8.146 1.098 11.82 1.481 15.44a19.9 19.9 0 0 0 5.993 3.03c.483-.66.914-1.362 1.284-2.098a12.9 12.9 0 0 1-2.022-.973c.17-.124.336-.253.497-.386a14.2 14.2 0 0 0 12.135 0c.163.133.329.262.497.386-.643.383-1.32.71-2.024.974.37.735.8 1.437 1.284 2.097a19.83 19.83 0 0 0 6-3.03c.45-4.203-.696-7.842-2.808-11.07ZM8.02 13.24c-.94 0-1.71-.867-1.71-1.933 0-1.067.75-1.934 1.71-1.934.968 0 1.729.876 1.712 1.934 0 1.066-.75 1.933-1.712 1.933Zm7.96 0c-.94 0-1.71-.867-1.71-1.933 0-1.067.75-1.934 1.71-1.934.968 0 1.729.876 1.712 1.934 0 1.066-.744 1.933-1.712 1.933Z"/></svg>
+          </span>
+          <span>Connect with me on Discord — I'm mostly active there!</span>
+        </a>
+        <a class="pricing-connect-square" href="https://www.instagram.com/beolfog/reels/?__pwa=1#" target="_blank" rel="noopener">
+          <span class="pricing-connect-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <span>Instagram? Who doesn't use Insta these days? 😭 You can find me there too!</span>
+        </a>
+        <a class="pricing-connect-square" href="mailto:beolfoganimation@gmail.com" target="_blank" rel="noopener">
+          <span class="pricing-connect-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6.5 12 13l9-6.5"/></svg>
+          </span>
+          <span>Gmail? Ehh… yea! Yea! 😭 I don't usually get mails, but I check it toooo!</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container footer-row">
     <span>© 2026 Beolf O.G — Video Editor & Minecraft Animator</span>
@@ -839,6 +1079,44 @@ document.querySelectorAll('.video-card[data-video-id], .highlight-card[data-vide
     .then(data => { if (data && data.title) titleEl.textContent = data.title; })
     .catch(() => { /* keep fallback title if lookup fails (e.g. offline) */ });
 });
+</script>
+<script>
+// Pricing modal
+const pricingOverlay = document.getElementById('pricingOverlay');
+const pricingMain = document.getElementById('pricingMain');
+const pricingConnect = document.getElementById('pricingConnect');
+
+function switchPricingTab(tab){
+  document.querySelectorAll('.pricing-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.toggle('active', p.dataset.panel===tab));
+}
+
+function openPricing(tab){
+  switchPricingTab(tab || 'editing');
+  pricingMain.style.display = '';
+  pricingConnect.style.display = 'none';
+  pricingOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePricing(){
+  pricingOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function openConnect(){
+  pricingMain.style.display = 'none';
+  pricingConnect.style.display = 'block';
+  pricingOverlay.querySelector('.pricing-modal').scrollTop = 0;
+}
+
+function backToPricing(){
+  pricingConnect.style.display = 'none';
+  pricingMain.style.display = '';
+}
+
+pricingOverlay.addEventListener('click', e=>{ if(e.target === pricingOverlay) closePricing(); });
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && pricingOverlay.classList.contains('open')) closePricing(); });
 </script>
 <script>
 const cursor=document.getElementById('cursor');
@@ -970,5 +1248,67 @@ async function startMusic(){
 });
 
 </script>
+
+<script>
+/* Live system:
+   The static website reads live/live.json. A GitHub Action updates that file
+   from the YouTube Data API, so no secret API key is exposed to visitors. */
+(async()=>{
+  const player=document.getElementById('livePlayer');
+  const status=document.getElementById('liveStatus');
+  const title=document.getElementById('liveTitle');
+  const desc=document.getElementById('liveDescription');
+  const watch=document.getElementById('liveWatch');
+  const archive=document.getElementById('liveArchive');
+
+  const setStatus=(isLive)=>{
+    status.innerHTML=isLive
+      ? '<span class="live-status"><span class="live-dot"></span> LIVE NOW</span>'
+      : '<span style="color:var(--muted);font-size:12px">● OFFLINE</span>';
+  };
+
+  const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  try{
+    const res=await fetch('live/live.json?'+Date.now(),{cache:'no-store'});
+    if(!res.ok) throw new Error('live data unavailable');
+    const data=await res.json();
+    const current=data.current;
+    setStatus(!!current);
+
+    if(current){
+      player.innerHTML='<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(current.videoId)+'?autoplay=0&rel=0"
+        title="'+esc(current.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>';
+      title.textContent=current.title || 'Live now';
+      desc.textContent='Beolf O.G is live on YouTube right now.';
+      watch.href='https://youtu.be/'+encodeURIComponent(current.videoId);
+      watch.textContent='Watch on YouTube ↗';
+    }else{
+      player.innerHTML='<div class="live-placeholder"><div><h3>No livestream right now</h3><p>When the next stream starts, this section will automatically switch to the live player.</p></div></div>';
+      title.textContent='Currently offline';
+      desc.textContent='No active livestream. Check the archive below for previous streams.';
+      watch.href='https://youtube.com/@beolfog';
+      watch.textContent='Visit YouTube ↗';
+    }
+
+    const items=Array.isArray(data.archive)?data.archive:[];
+    if(!items.length){
+      archive.innerHTML='<div class="live-placeholder" style="min-height:180px;grid-column:1/-1"><p>No livestreams have been archived yet.</p></div>';
+    }else{
+      archive.innerHTML=items.map((v,i)=>`
+        <a class="archive-card reveal show" href="https://youtu.be/${encodeURIComponent(v.videoId)}" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/${encodeURIComponent(v.videoId)}/hqdefault.jpg" alt="${esc(v.title)}" loading="lazy">
+          <div class="archive-info"><h3>${esc(v.title)}</h3><span>▶ Watch recording${v.publishedAt?' · '+new Date(v.publishedAt).toLocaleDateString():''}</span></div>
+        </a>`).join('');
+    }
+  }catch(e){
+    setStatus(false);
+    player.innerHTML='<div class="live-placeholder"><div><h3>Live system is setting up</h3><p>The livestream feed will appear here once the YouTube automation is configured.</p></div></div>';
+    archive.innerHTML='<div class="live-placeholder" style="min-height:180px;grid-column:1/-1"><p>Livestream archive is not available yet.</p></div>';
+  }
+})();
+</script>
+
 </body>
 </html>
