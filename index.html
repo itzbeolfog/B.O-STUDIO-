@@ -2939,7 +2939,11 @@ async function startMusic(){
    ============================================================ */
 (() => {
   const TO_EMAIL = 'beolfoganimation@gmail.com';
-  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO_EMAIL;   // swap for your FormSubmit alias URL if you want the address hidden
+  /* Paste your Web3Forms access key between the quotes (free at web3forms.com — the key is emailed to you).
+     While it's empty, the form falls back to FormSubmit below. */
+  const W3F_KEY  = '8c59ba0c-2569-4c3e-bc1e-a7bb0f1eba9e';
+  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO_EMAIL;   // FormSubmit fallback (swap for your FormSubmit alias URL to hide the address)
+  const useW3F   = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(W3F_KEY.trim());
 
   const $ = id => document.getElementById(id);
   const page = $('hirePage'), form = $('hmForm');
@@ -3110,14 +3114,13 @@ async function startMusic(){
 
     setSending(true);
     try {
-      const res = await fetch(ENDPOINT, {
+      const extra = useW3F
+        ? { access_key: W3F_KEY.trim(), subject: 'New hire request from ' + d.name, from_name: 'Beolf O.G website' }
+        : { _subject: 'New hire request from ' + d.name, _template: 'table', _captcha: 'false' };
+      const res = await fetch(useW3F ? 'https://api.web3forms.com/submit' : ENDPOINT, {
         method:'POST',
         headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-        body: JSON.stringify(Object.assign({
-          _subject: 'New hire request from ' + d.name,
-          _template: 'table',
-          _captcha: 'false'
-        }, d))
+        body: JSON.stringify(Object.assign(extra, d))
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !(data.success === true || data.success === 'true')) throw new Error(data.message || ('Unexpected reply from the mail service (HTTP ' + res.status + ')'));
