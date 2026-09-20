@@ -944,6 +944,125 @@ body.plan-picking .nav{opacity:0;pointer-events:none}
   .pv-pr.arrive,.pv-mc.arrive .pv-shell{animation:none!important}
 }
 </style>
+<style id="hireStyles">
+/* ============================================================
+   HIRE ME  →  booking request page (emails beolfoganimation@gmail.com)
+   ============================================================ */
+body.hm-open{overflow:hidden}
+.hm-page{
+  position:fixed;inset:0;z-index:400;display:none;overflow-x:hidden;overflow-y:auto;
+  padding:clamp(12px,3vw,28px);
+  background:
+    radial-gradient(46% 60% at 20% 15%,rgba(106,220,90,.16),transparent 72%),
+    radial-gradient(46% 60% at 85% 85%,rgba(156,107,255,.18),transparent 72%),
+    rgba(6,4,2,.94);
+  backdrop-filter:blur(12px);
+}
+.hm-page.open{display:block;animation:hmFade .4s ease backwards}
+.hm-page.closing{opacity:0;transition:opacity .28s ease}
+@keyframes hmFade{from{opacity:0}}
+@keyframes hmRise{from{opacity:0;transform:translateY(26px) scale(.985)}}
+
+.hm-shell{
+  position:relative;width:min(780px,100%);margin:clamp(6px,4vh,44px) auto;
+  border:2px solid rgba(106,220,90,.28);border-top:5px solid var(--mc-grass);border-radius:6px;
+  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02)),rgba(14,10,6,.92);
+  box-shadow:0 30px 90px rgba(0,0,0,.6),inset 0 -22px 26px -24px var(--mc-dirt);
+  animation:hmRise .6s cubic-bezier(.16,1,.3,1) .05s backwards;
+}
+.hm-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 14px 11px 18px;border-bottom:1px solid rgba(255,255,255,.08);
+  font:500 11px var(--font-mono);letter-spacing:.06em;color:#8791a1;background:rgba(0,0,0,.28);
+}
+.hm-bar b{color:var(--mc-redstone);font-weight:600}
+.hm-x{
+  width:36px;height:36px;display:grid;place-items:center;flex:none;cursor:pointer;
+  border:1px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(255,255,255,.06);
+  color:#fff;font:inherit;font-size:15px;line-height:1;transition:background .2s;
+}
+.hm-x:hover{background:rgba(255,255,255,.16)}
+.hm-body{padding:clamp(20px,4vw,38px)}
+.hm-head .eyebrow{font-size:10px}
+.hm-head h2{font-size:clamp(30px,5vw,46px);margin:10px 0 8px}
+.hm-head p{color:var(--muted);font-size:14px;max-width:520px}
+
+.hm-form{display:grid;gap:22px;margin-top:28px}
+.hm-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hm-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.hm-label,.hm-legend{
+  font:600 11px var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:#b9c1cf;
+}
+.hm-label i,.hm-legend i{color:var(--mc-grass);font-style:normal;margin-left:3px}
+.hm-opt-note{color:#7e8795;text-transform:none;letter-spacing:.02em;font-weight:500}
+.hm-input{
+  width:100%;padding:13px 14px;border-radius:4px;color:var(--text);
+  font:500 16px Inter,system-ui,sans-serif;color-scheme:dark;
+  background:rgba(0,0,0,.4);border:2px solid rgba(106,220,90,.2);
+  transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.hm-input::placeholder{color:#6f7787}
+.hm-input:hover{border-color:rgba(106,220,90,.4)}
+.hm-input:focus{outline:none;border-color:var(--mc-grass);box-shadow:0 0 0 4px rgba(106,220,90,.14);background:rgba(0,0,0,.55)}
+textarea.hm-input{resize:vertical;min-height:96px;line-height:1.5}
+.hm-field.bad .hm-input,.hm-fieldset.bad .hm-box{border-color:#ff6b76}
+.hm-err{min-height:0;font-size:12px;color:#ff8f98;display:none}
+.hm-field.bad .hm-err,.hm-fieldset.bad .hm-err{display:block}
+
+.hm-fieldset{border:0;min-width:0;display:flex;flex-direction:column;gap:9px}
+.hm-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hm-opt{position:relative;display:block;cursor:pointer}
+.hm-opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.hm-box{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:4px;
+  background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.1);
+  transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;
+}
+.hm-opt:hover .hm-box{border-color:rgba(106,220,90,.45);transform:translateY(-2px)}
+.hm-opt input:checked + .hm-box{
+  border-color:var(--mc-grass);background:rgba(106,220,90,.12);
+  box-shadow:0 0 0 3px rgba(106,220,90,.12),inset 0 0 22px rgba(106,220,90,.08);
+}
+.hm-opt input:focus-visible + .hm-box{outline:2px solid var(--mc-diamond);outline-offset:3px}
+.hm-ic{
+  width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:4px;
+  border:1px solid var(--line);background:rgba(255,255,255,.06);
+  font:700 12px "Space Grotesk",sans-serif;color:var(--mc-grass);
+}
+.hm-opt input:checked + .hm-box .hm-ic{background:var(--mc-grass);color:#0b1a07;border-color:transparent}
+.hm-opt-t{font:600 14px "Space Grotesk",sans-serif;letter-spacing:-.01em}
+
+.hm-hint{font-size:11.5px;color:#7e8795}
+.hm-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+
+.hm-submit{width:100%;padding:16px 18px;font-size:15px;margin-top:2px}
+.hm-submit[disabled]{opacity:.65;cursor:progress;transform:none!important}
+.hm-status{font-size:13px;min-height:1.2em}
+.hm-status.err{color:#ff8f98}
+.hm-fallback{display:none;margin-top:10px;gap:10px;flex-wrap:wrap}
+.hm-fallback.show{display:flex}
+
+.hm-done{display:none;text-align:center;padding:clamp(18px,5vw,44px) 0 6px}
+.hm-done.show{display:block;animation:hmRise .6s cubic-bezier(.16,1,.3,1) backwards}
+.hm-check{
+  width:74px;height:74px;margin:0 auto 22px;display:grid;place-items:center;border-radius:6px;
+  background:var(--mc-grass);color:#0b1a07;font:700 34px "Space Grotesk",sans-serif;
+  box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -4px -4px 0 rgba(0,0,0,.3),0 0 46px rgba(106,220,90,.4);
+}
+.hm-done h3{font:700 clamp(26px,4vw,36px) "Space Grotesk",sans-serif;letter-spacing:-.03em;margin-bottom:10px}
+.hm-done p{color:var(--muted);font-size:14.5px;max-width:470px;margin:0 auto 6px}
+.hm-done .btn{margin-top:22px}
+.hm-page.sent .hm-head,.hm-page.sent .hm-form{display:none}
+
+@media(max-width:600px){
+  .hm-row{grid-template-columns:1fr}
+  .hm-opts{grid-template-columns:1fr 1fr}
+  .hm-bar span:last-child{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .hm-page.open,.hm-shell,.hm-done.show{animation:none!important}
+}
+</style>
 </head>
 <body class="intro-active">
 <!-- ===== INTRO: opening_video welcome screen ===== -->
@@ -989,7 +1108,7 @@ body.plan-picking .nav{opacity:0;pointer-events:none}
     <a href="#software">Software</a>
     <a href="#contact">Contact</a>
   </div>
-  <a class="navcta" href="mailto:beolfoganimation@gmail.com?subject=Project%20Inquiry">Hire Me</a>
+  <a class="navcta" id="hireBtn" href="mailto:beolfoganimation@gmail.com?subject=Project%20Inquiry" aria-haspopup="dialog">Hire Me</a>
 </nav>
 
 <main id="top">
@@ -1569,6 +1688,92 @@ body.plan-picking .nav{opacity:0;pointer-events:none}
   </div>
 </section>
 </main>
+
+<!-- ===== HIRE ME: booking request page ===== -->
+<div class="hm-page" id="hirePage" role="dialog" aria-modal="true" aria-labelledby="hmTitle" aria-hidden="true">
+  <div class="hm-shell">
+    <div class="hm-bar">
+      <span><b>●</b> REC &nbsp;/&nbsp; HIRE_REQUEST_01</span>
+      <span id="hmClock">00:00:00:00</span>
+      <button type="button" class="hm-x" id="hmClose" aria-label="Close">✕</button>
+    </div>
+
+    <div class="hm-body">
+      <div class="hm-head">
+        <div class="eyebrow">Book a project chat</div>
+        <h2 id="hmTitle">Hire <span class="gradient">Beolf O.G</span></h2>
+        <p>Tell me who you are, where you'd like to talk and when. I'll get your request straight to my inbox and reach out to confirm.</p>
+      </div>
+
+      <form class="hm-form" id="hmForm" novalidate autocomplete="on">
+        <input class="hm-hp" type="text" name="_honey" id="hmHoney" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="hm-row">
+          <div class="hm-field" data-f="name">
+            <label class="hm-label" for="hmName">Your name<i>*</i></label>
+            <input class="hm-input" id="hmName" name="name" type="text" maxlength="80" placeholder="e.g. Alex Carter" autocomplete="name">
+            <span class="hm-err"></span>
+          </div>
+          <div class="hm-field" data-f="email">
+            <label class="hm-label" for="hmEmail">Your email<i>*</i></label>
+            <input class="hm-input" id="hmEmail" name="email" type="email" maxlength="120" placeholder="you@example.com" autocomplete="email" inputmode="email">
+            <span class="hm-err"></span>
+          </div>
+        </div>
+
+        <fieldset class="hm-fieldset" data-f="method">
+          <legend class="hm-legend">Where do you want to talk?<i>*</i></legend>
+          <div class="hm-opts" id="hmOpts">
+            <label class="hm-opt"><input type="radio" name="method" value="Email" checked><span class="hm-box"><span class="hm-ic">@</span><span class="hm-opt-t">Email</span></span></label>
+            <label class="hm-opt"><input type="radio" name="method" value="Discord"><span class="hm-box"><span class="hm-ic">DC</span><span class="hm-opt-t">Discord</span></span></label>
+            <label class="hm-opt"><input type="radio" name="method" value="Instagram"><span class="hm-box"><span class="hm-ic">IG</span><span class="hm-opt-t">Instagram</span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="hm-field" data-f="handle">
+          <label class="hm-label" for="hmHandle"><span id="hmHandleLabel">Your email address</span><i>*</i></label>
+          <input class="hm-input" id="hmHandle" name="contact_id" type="email" maxlength="120" placeholder="you@example.com" autocomplete="off" inputmode="email" autocapitalize="off" spellcheck="false">
+          <span class="hm-err"></span>
+        </div>
+
+        <div class="hm-row">
+          <div class="hm-field" data-f="date">
+            <label class="hm-label" for="hmDate">Booking date<i>*</i></label>
+            <input class="hm-input" id="hmDate" name="booking_date" type="date">
+            <span class="hm-err"></span>
+          </div>
+          <div class="hm-field" data-f="time">
+            <label class="hm-label" for="hmTime">Booking time<i>*</i></label>
+            <input class="hm-input" id="hmTime" name="booking_time" type="time">
+            <span class="hm-err"></span>
+          </div>
+        </div>
+        <div class="hm-hint" id="hmTz" style="margin-top:-12px">Time is in your local timezone.</div>
+
+        <div class="hm-field" data-f="msg">
+          <label class="hm-label" for="hmMsg">About your project <span class="hm-opt-note">(optional)</span></label>
+          <textarea class="hm-input" id="hmMsg" name="project_details" maxlength="1000" placeholder="Video type, length, deadline, links…"></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn primary hm-submit" id="hmSubmit">Send Request →</button>
+          <div class="hm-status" id="hmStatus" role="status" aria-live="polite"></div>
+          <div class="hm-fallback" id="hmFallback">
+            <button type="button" class="btn secondary" id="hmRetry">Try again</button>
+            <a class="btn secondary" id="hmMailto" href="#">Send with my email app instead ↗</a>
+          </div>
+        </div>
+      </form>
+
+      <div class="hm-done" id="hmDone" tabindex="-1">
+        <div class="hm-check" aria-hidden="true">✓</div>
+        <h3>Request sent!</h3>
+        <p id="hmDoneMsg"></p>
+        <button type="button" class="btn primary" id="hmDoneClose">Back to the site</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- shared SVG defs: Premiere Pro tile (used small in the Premiere view) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -2281,9 +2486,9 @@ async function startMusic(){
     setStatus(!!current);
 
     if(current){
-      player.innerHTML='<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(current.videoId)+'?autoplay=0&rel=0"
-        title="'+esc(current.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>';
+      player.innerHTML='<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(current.videoId)+'?autoplay=0&rel=0"'+
+        ' title="'+esc(current.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"'+
+        ' allowfullscreen></iframe>';
       title.textContent=current.title || 'Live now';
       desc.textContent='Beolf O.G is live on YouTube right now.';
       watch.href='https://youtu.be/'+encodeURIComponent(current.videoId);
@@ -2572,19 +2777,14 @@ async function startMusic(){
 
   /* ---- main timeline ---- */
   const BASE    = 1.06;                 // slow push-in while the button charges
-  const PULL_TO = BASE * 0.80;          // brief pull-back / wind-up right after the blast
-  const PULL_END = 0.14;                // fraction of ZOOM_MS spent pulling back before the dive
   const ZOOM_START = CHARGE_MS + 150;   // zoom begins just after the blast
+  const ZOOM_EASE  = 3;                 // ease-in strength (higher = slower start, harder finish)
   let t0 = 0, last = 0, leaving = false;
 
-  // wind-up then 200x plunge: pulls back a touch first, then rockets in, accelerating hard toward the end
+  // pure ease-in: continues straight on from the charge push-in (no pull-back) and
+  // accelerates toward the 200x finish
   function zoomScale(z){
-    if (z < PULL_END){
-      const p = smooth(z / PULL_END);
-      return BASE + (PULL_TO - BASE) * p;
-    }
-    const p = (z - PULL_END) / (1 - PULL_END);
-    return PULL_TO * Math.pow(ZOOM_TO / PULL_TO, p * p * p * p);
+    return BASE * Math.pow(ZOOM_TO / BASE, Math.pow(z, ZOOM_EASE));
   }
 
   function tick(now){
@@ -2602,7 +2802,7 @@ async function startMusic(){
     } else {
       if (!exploded) boom(now);
 
-      // wind-up dip, then a 200x plunge that accelerates hard toward the end
+      // smooth ease-in 200x plunge, accelerating toward the end
       const z = clamp((e - ZOOM_START) / ZOOM_MS);
       const s = zoomScale(z);
       const k = clamp(1 - (e - CHARGE_MS) / 500), shake = k * k * 14;   // punch of the blast
@@ -2701,6 +2901,253 @@ async function startMusic(){
 
   // expose the synth so the plan-picker transitions can reuse it
   window.__sfx = { tone };
+})();
+</script>
+
+<script>
+/* ============================================================
+   HIRE ME — booking request form
+   Sends the request to the studio inbox through FormSubmit (no backend needed).
+   ============================================================ */
+(() => {
+  const TO_EMAIL = 'beolfoganimation@gmail.com';
+  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO_EMAIL;   // swap for your FormSubmit alias URL if you want the address hidden
+
+  const $ = id => document.getElementById(id);
+  const page = $('hirePage'), form = $('hmForm');
+  const fName = $('hmName'), fEmail = $('hmEmail'), fHandle = $('hmHandle'),
+        fDate = $('hmDate'), fTime = $('hmTime'), fMsg = $('hmMsg');
+  const submitBtn = $('hmSubmit'), statusEl = $('hmStatus'), fallback = $('hmFallback');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const METHODS = {
+    'Email':       { label:'Your email address',            ph:'you@example.com',        type:'email', mode:'email' },
+    'Discord':     { label:'Your Discord username',         ph:'username',               type:'text',  mode:'text'  },
+    'Instagram':   { label:'Your Instagram handle',         ph:'@yourhandle',            type:'text',  mode:'text'  }
+  };
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const method = () => form.querySelector('input[name="method"]:checked').value;
+
+  /* ---- local timezone hint + min date ---- */
+  const tz = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e){ return ''; } })();
+  const pad = n => String(n).padStart(2, '0');
+  const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
+  function refreshDateBounds(){
+    fDate.min = todayStr();
+    $('hmTz').textContent = tz ? `Time is in your local timezone (${tz}). I'll convert it on my side.` : 'Time is in your local timezone.';
+  }
+
+  /* ---- method switch: relabel the handle field, auto-fill from email ---- */
+  let autoFilled = false;
+  function applyMethod(){
+    const m = METHODS[method()];
+    $('hmHandleLabel').textContent = m.label;
+    fHandle.placeholder = m.ph;
+    fHandle.type = m.type;
+    fHandle.inputMode = m.mode;
+    if (method() === 'Email'){
+      if (!fHandle.value.trim()){ fHandle.value = fEmail.value.trim(); autoFilled = !!fHandle.value; }
+    } else if (autoFilled){
+      fHandle.value = ''; autoFilled = false;
+    }
+    clearErr('handle');
+  }
+  form.querySelectorAll('input[name="method"]').forEach(r => r.addEventListener('change', applyMethod));
+  fEmail.addEventListener('input', () => {
+    if (method() === 'Email' && (autoFilled || !fHandle.value.trim())){
+      fHandle.value = fEmail.value.trim(); autoFilled = !!fHandle.value;
+    }
+  });
+  fHandle.addEventListener('input', () => { autoFilled = false; });
+
+  /* ---- validation ---- */
+  const fieldEl = k => form.querySelector(`[data-f="${k}"]`);
+  function setErr(k, msg){
+    const el = fieldEl(k); if (!el) return;
+    el.classList.add('bad');
+    let e = el.querySelector('.hm-err');
+    if (!e){ e = document.createElement('span'); e.className = 'hm-err'; el.appendChild(e); }
+    e.textContent = msg;
+  }
+  function clearErr(k){ const el = fieldEl(k); if (el) el.classList.remove('bad'); }
+  form.addEventListener('input', e => {
+    const f = e.target.closest('[data-f]'); if (f) f.classList.remove('bad');
+  });
+
+  function validate(){
+    Object.keys({name:1,email:1,method:1,handle:1,date:1,time:1}).forEach(clearErr);
+    const errs = [];   // [key, message, element to focus]
+    const name = fName.value.trim(), email = fEmail.value.trim(), handle = fHandle.value.trim();
+
+    if (name.length < 2) errs.push(['name', 'Please enter your name.', fName]);
+    if (!EMAIL_RE.test(email)) errs.push(['email', 'Please enter a valid email address.', fEmail]);
+
+    if (!handle) errs.push(['handle', method() === 'Email' ? 'Please enter the email you want me to use.' : 'Please enter your ' + method() + ' ID so I can find you.', fHandle]);
+    else if (method() === 'Email' && !EMAIL_RE.test(handle)) errs.push(['handle', 'That email doesn\'t look right.', fHandle]);
+    else if (handle.length > 100) errs.push(['handle', 'That\'s too long.', fHandle]);
+
+    if (!fDate.value) errs.push(['date', 'Pick a booking date.', fDate]);
+    else if (fDate.value < todayStr()) errs.push(['date', 'That date has already passed.', fDate]);
+
+    if (!fTime.value) errs.push(['time', 'Pick a booking time.', fTime]);
+    else if (fDate.value === todayStr()){
+      const n = new Date();
+      if (fTime.value < `${pad(n.getHours())}:${pad(n.getMinutes())}`) errs.push(['time', 'That time has already passed today.', fTime]);
+    }
+
+    errs.forEach(([k, msg]) => setErr(k, msg));
+    if (errs.length) errs[0][2].focus();
+    return !errs.length;
+  }
+
+  /* ---- payload helpers ---- */
+  function fmtDate(d){
+    try { return new Date(d + 'T00:00:00').toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
+    catch(e){ return d; }
+  }
+  function fmtTime(t){
+    try { const [h, m] = t.split(':').map(Number); return new Date(2000, 0, 1, h, m).toLocaleTimeString(undefined, { hour:'numeric', minute:'2-digit' }); }
+    catch(e){ return t; }
+  }
+  function inStudioTime(){
+    try {
+      return new Date(`${fDate.value}T${fTime.value}`).toLocaleString('en-IN', {
+        timeZone:'Asia/Kolkata', weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'numeric', minute:'2-digit'
+      }) + ' IST';
+    } catch(e){ return ''; }
+  }
+  function collect(){
+    return {
+      name: fName.value.trim(),
+      email: fEmail.value.trim(),
+      contact_method: method(),
+      contact_id: fHandle.value.trim(),
+      booking_date: fmtDate(fDate.value),
+      booking_time: fmtTime(fTime.value),
+      visitor_timezone: tz || 'unknown',
+      booking_in_IST: inStudioTime(),
+      project_details: fMsg.value.trim() || '(none)'
+    };
+  }
+  function mailtoHref(d){
+    const body = [
+      'Name: ' + d.name, 'Email: ' + d.email,
+      'Preferred contact: ' + d.contact_method + ' — ' + d.contact_id,
+      'Booking: ' + d.booking_date + ' at ' + d.booking_time + ' (' + d.visitor_timezone + ')',
+      d.booking_in_IST ? 'In IST: ' + d.booking_in_IST : '',
+      '', 'Project details:', d.project_details
+    ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n');
+    return 'mailto:' + TO_EMAIL + '?subject=' + encodeURIComponent('Hire Request — ' + d.name) + '&body=' + encodeURIComponent(body);
+  }
+
+  /* ---- submit ---- */
+  function setStatus(msg, isErr){ statusEl.textContent = msg || ''; statusEl.classList.toggle('err', !!isErr); }
+  function setSending(on){
+    submitBtn.disabled = on;
+    submitBtn.textContent = on ? 'Sending…' : 'Send Request →';
+  }
+  function showDone(d){
+    $('hmDoneMsg').textContent =
+      `Thanks ${d.name.split(' ')[0]}! I got your request for ${d.booking_date} at ${d.booking_time}. ` +
+      `I'll reach out on ${d.contact_method} (${d.contact_id}) to confirm.`;
+    page.classList.add('sent');
+    $('hmDone').classList.add('show');
+    $('hmDone').focus({ preventScroll:true });
+    page.scrollTop = 0;
+  }
+
+  async function send(){
+    if (!validate()) return;
+    const d = collect();
+    setStatus(''); fallback.classList.remove('show');
+
+    if ($('hmHoney').value){ showDone(d); return; }   // bot caught by the honeypot: pretend success, send nothing
+
+    setSending(true);
+    try {
+      const res = await fetch(ENDPOINT, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify(Object.assign({
+          _subject: 'New hire request from ' + d.name,
+          _template: 'table',
+          _captcha: 'false'
+        }, d))
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === false || data.success === 'false') throw new Error(data.message || ('HTTP ' + res.status));
+      showDone(d);
+    } catch (err){
+      console.error('Hire form send failed:', err);
+      setStatus('Couldn\'t send your request just now. Try again, or send it with your email app.', true);
+      $('hmMailto').href = mailtoHref(d);
+      fallback.classList.add('show');
+    } finally {
+      setSending(false);
+    }
+  }
+  form.addEventListener('submit', e => { e.preventDefault(); send(); });
+  $('hmRetry').addEventListener('click', send);
+
+  /* ---- open / close ---- */
+  let lastFocus = null, clockTimer = null, t0 = 0;
+  function tickClock(){
+    const s = (performance.now() - t0) / 1000;
+    $('hmClock').textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(Math.floor(s) % 60)}:${pad(Math.floor((s % 1) * 24))}`;
+  }
+  function openHire(){
+    if (page.classList.contains('open')) return;
+    lastFocus = document.activeElement;
+    refreshDateBounds();
+    page.classList.remove('closing');
+    page.classList.add('open');
+    page.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('hm-open');
+    page.scrollTop = 0;
+    t0 = performance.now(); tickClock();
+    clockTimer = setInterval(tickClock, 80);
+    setTimeout(() => (page.classList.contains('sent') ? $('hmDone') : fName).focus({ preventScroll:true }), reduce ? 0 : 350);
+  }
+  function closeHire(){
+    if (!page.classList.contains('open')) return;
+    const finish = () => {
+      page.classList.remove('open', 'closing');
+      page.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('hm-open');
+      clearInterval(clockTimer);
+      if (page.classList.contains('sent')){       // fresh form next time
+        form.reset(); autoFilled = false; applyMethod();
+        page.classList.remove('sent'); $('hmDone').classList.remove('show');
+        setStatus(''); fallback.classList.remove('show');
+      }
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll:true });
+    };
+    if (reduce){ finish(); return; }
+    page.classList.add('closing');
+    setTimeout(finish, 280);
+  }
+  $('hmClose').addEventListener('click', closeHire);
+  $('hmDoneClose').addEventListener('click', closeHire);
+
+  document.addEventListener('keydown', e => {
+    if (!page.classList.contains('open')) return;
+    if (e.key === 'Escape'){ closeHire(); return; }
+    if (e.key === 'Tab'){                          // keep focus inside the page
+      const f = [...page.querySelectorAll('a[href],button:not([disabled]),input:not([tabindex="-1"]):not([type="hidden"]),textarea,[tabindex="0"]')]
+        .filter(el => el.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ---- wire up the nav "Hire Me" button (href stays as a no-JS mailto fallback) ---- */
+  const hireBtn = $('hireBtn');
+  if (hireBtn) hireBtn.addEventListener('click', e => { e.preventDefault(); openHire(); });
+  window.openHireForm = openHire;
+
+  applyMethod();
 })();
 </script>
 
