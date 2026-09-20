@@ -1055,6 +1055,15 @@ textarea.hm-input{resize:vertical;min-height:96px;line-height:1.5}
 .hm-page.sent .hm-head,.hm-page.sent .hm-form{display:none}
 
 
+
+/* selected-plan chip (shown when the form is opened from a pricing card) */
+.hm-plan-wrap{margin-top:20px}
+.hm-plan-wrap[hidden]{display:none}
+.hm-epic{font:700 clamp(22px,3.4vw,30px)/1.1 "Space Grotesk",sans-serif;letter-spacing:-.035em;margin-bottom:12px}
+.hm-plan{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:11px 14px;border:2px solid rgba(106,220,90,.4);border-radius:4px;background:rgba(106,220,90,.08)}
+.hm-plan[hidden]{display:none}
+.hm-plan-k{font:600 10px var(--font-mono);letter-spacing:.12em;color:var(--mc-grass)}
+.hm-plan-v{font:600 15px "Space Grotesk",sans-serif;letter-spacing:-.01em}
 /* date + time (India format: DD/MM/YYYY, 12-hour IST) */
 .hm-datewrap{position:relative}
 .hm-datewrap .hm-input{padding-right:46px}
@@ -1721,6 +1730,10 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         <div class="eyebrow">Book a project chat</div>
         <h2 id="hmTitle">Hire <span class="gradient">Beolf O.G</span></h2>
         <p>Tell me who you are, where you'd like to talk and when. I'll get your request straight to my inbox and reach out to confirm.</p>
+        <div class="hm-plan-wrap" id="hmPlan" hidden>
+          <div class="hm-epic">Let's create something <span class="gradient">epic!</span></div>
+          <div class="hm-plan"><span class="hm-plan-k">SELECTED PLAN</span><span class="hm-plan-v" id="hmPlanV"></span></div>
+        </div>
       </div>
 
       <form class="hm-form" id="hmForm" novalidate autocomplete="on">
@@ -1869,7 +1882,6 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
       </div>
       <div class="pr-tabs" role="tablist">
         <button type="button" class="pr-tab active" role="tab" data-sub="pricing" onclick="backToPricing()">Pricing</button>
-        <button type="button" class="pr-tab" role="tab" data-sub="connect" onclick="openConnect()">Let's connect</button>
       </div>
       <div class="pv-actions">
         <button type="button" class="pv-switch" onclick="switchPlan()"><span class="pv-sw-long">Choose another plan</span><span class="pv-sw-short">Switch</span></button>
@@ -1899,7 +1911,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
           <div class="pr-row pr-track">
             <div class="pr-th">V2</div>
             <div class="pr-lane">
-              <button type="button" class="pr-clip" onclick="openConnect()">
+              <button type="button" class="pr-clip" onclick="openHireForm({group:'Video Editing',plan:'Video Editing',price:'₹1,500 / video'})">
                 <span class="pr-clip-name"><i class="pr-fx">fx</i>🎬 Video Editing</span>
                 <span class="pr-clip-desc">Full YouTube video edit · ~2–4 day turnaround</span>
                 <span class="pr-clip-price">₹1,500 / video</span>
@@ -1909,7 +1921,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
           <div class="pr-row pr-track">
             <div class="pr-th">V1</div>
             <div class="pr-lane">
-              <button type="button" class="pr-clip violet" onclick="openConnect()">
+              <button type="button" class="pr-clip violet" onclick="openHireForm({group:'Video Editing',plan:'Reels/Shorts',price:'₹500 / reel'})">
                 <span class="pr-clip-name"><i class="pr-fx">fx</i>📱 Reels/Shorts</span>
                 <span class="pr-clip-desc">Short-form vertical edit · ~1–2 day turnaround</span>
                 <span class="pr-clip-price">₹500 / reel</span>
@@ -1945,27 +1957,27 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
 
         <div class="mc-slots">
-          <button type="button" class="mc-slot" onclick="openConnect()">
+          <button type="button" class="mc-slot" onclick="openHireForm({group:'Minecraft Animation',plan:'Simple Minecraft animation',price:'₹1,500–₹3,000 / 10 sec'})">
             <span class="mc-item" data-sprite="sword:wood"></span>
             <span class="mc-name">Simple Minecraft animation<small>Basic movement, simple scene · ~2–3 day turnaround</small></span>
             <span class="mc-price">₹1,500–₹3,000 / 10 sec</span>
           </button>
-          <button type="button" class="mc-slot" onclick="openConnect()">
+          <button type="button" class="mc-slot" onclick="openHireForm({group:'Minecraft Animation',plan:'Detailed animation',price:'₹3,000–₹6,000 / 10 sec'})">
             <span class="mc-item" data-sprite="sword:stone"></span>
             <span class="mc-name">Detailed animation<small>Combat/action, camera work, effects · ~3–5 day turnaround</small></span>
             <span class="mc-price">₹3,000–₹6,000 / 10 sec</span>
           </button>
-          <button type="button" class="mc-slot" onclick="openConnect()">
+          <button type="button" class="mc-slot" onclick="openHireForm({group:'Minecraft Animation',plan:'High-detail cinematic',price:'₹6,000–₹12,000+ / 10 sec'})">
             <span class="mc-item" data-sprite="sword:iron"></span>
             <span class="mc-name">High-detail cinematic<small>Complex choreography, VFX, environments · ~5–8 day turnaround</small></span>
             <span class="mc-price">₹6,000–₹12,000+ / 10 sec</span>
           </button>
-          <button type="button" class="mc-slot" onclick="openConnect()">
+          <button type="button" class="mc-slot" onclick="openHireForm({group:'Minecraft Animation',plan:'30-sec cinematic',price:'₹8,000–₹20,000+'})">
             <span class="mc-item" data-sprite="sword:gold"></span>
             <span class="mc-name">30-sec cinematic<small>Full cinematic sequence · ~7–10 day turnaround</small></span>
             <span class="mc-price">₹8,000–₹20,000+</span>
           </button>
-          <button type="button" class="mc-slot" onclick="openConnect()">
+          <button type="button" class="mc-slot" onclick="openHireForm({group:'Minecraft Animation',plan:'60-sec cinematic',price:'₹15,000–₹40,000+'})">
             <span class="mc-item" data-sprite="sword:diamond"></span>
             <span class="mc-name">60-sec cinematic<small>Full cinematic sequence · ~10–15 day turnaround</small></span>
             <span class="mc-price">₹15,000–₹40,000+</span>
@@ -2939,11 +2951,7 @@ async function startMusic(){
    ============================================================ */
 (() => {
   const TO_EMAIL = 'beolfoganimation@gmail.com';
-  /* Paste your Web3Forms access key between the quotes (free at web3forms.com — the key is emailed to you).
-     While it's empty, the form falls back to FormSubmit below. */
-  const W3F_KEY  = '8c59ba0c-2569-4c3e-bc1e-a7bb0f1eba9e';
-  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO_EMAIL;   // FormSubmit fallback (swap for your FormSubmit alias URL to hide the address)
-  const useW3F   = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(W3F_KEY.trim());
+  const ENDPOINT = 'https://formsubmit.co/ajax/' + TO_EMAIL;   // FormSubmit (already activated)
 
   const $ = id => document.getElementById(id);
   const page = $('hirePage'), form = $('hmForm');
@@ -3076,6 +3084,7 @@ async function startMusic(){
       booking_date: bookingDate(),
       booking_time: bookingTime(),
       visitor_timezone: tz || 'unknown',
+      selected_plan: plan ? `${plan.group} — ${plan.plan} (${plan.price})` : 'Not selected (general enquiry)',
       project_details: fMsg.value.trim() || '(none)'
     };
   }
@@ -3083,6 +3092,7 @@ async function startMusic(){
     const body = [
       'Name: ' + d.name, 'Email: ' + d.email,
       'Preferred contact: ' + d.contact_method + ' — ' + d.contact_id,
+      'Plan: ' + d.selected_plan,
       'Booking: ' + d.booking_date + ' at ' + d.booking_time,
       '', 'Project details:', d.project_details
     ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n');
@@ -3114,13 +3124,14 @@ async function startMusic(){
 
     setSending(true);
     try {
-      const extra = useW3F
-        ? { access_key: W3F_KEY.trim(), subject: 'New hire request from ' + d.name, from_name: 'Beolf O.G website' }
-        : { _subject: 'New hire request from ' + d.name, _template: 'table', _captcha: 'false' };
-      const res = await fetch(useW3F ? 'https://api.web3forms.com/submit' : ENDPOINT, {
+      const res = await fetch(ENDPOINT, {
         method:'POST',
         headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-        body: JSON.stringify(Object.assign(extra, d))
+        body: JSON.stringify(Object.assign({
+          _subject: 'New hire request from ' + d.name,
+          _template: 'table',
+          _captcha: 'false'
+        }, d))
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !(data.success === true || data.success === 'true')) throw new Error(data.message || ('Unexpected reply from the mail service (HTTP ' + res.status + ')'));
@@ -3141,13 +3152,22 @@ async function startMusic(){
   $('hmRetry').addEventListener('click', send);
 
   /* ---- open / close ---- */
+  let plan = null;                       // {group, plan, price} when opened from a pricing card
+  function renderPlan(){
+    const el = $('hmPlan');
+    if (!plan){ el.hidden = true; return; }
+    $('hmPlanV').textContent = plan.plan + '  ·  ' + plan.price;
+    el.hidden = false;
+  }
   let lastFocus = null, clockTimer = null, t0 = 0;
   function tickClock(){
     const s = (performance.now() - t0) / 1000;
     $('hmClock').textContent = `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}:${pad(Math.floor(s) % 60)}:${pad(Math.floor((s % 1) * 24))}`;
   }
-  function openHire(){
+  function openHire(opts){
     if (page.classList.contains('open')) return;
+    plan = (opts && opts.plan) ? opts : null;
+    renderPlan();
     lastFocus = document.activeElement;
     refreshDateBounds();
     page.classList.remove('closing');
@@ -3182,7 +3202,7 @@ async function startMusic(){
 
   document.addEventListener('keydown', e => {
     if (!page.classList.contains('open')) return;
-    if (e.key === 'Escape'){ closeHire(); return; }
+    if (e.key === 'Escape'){ e.stopPropagation(); closeHire(); return; }   // capture phase: keeps the pricing view underneath open
     if (e.key === 'Tab'){                          // keep focus inside the page
       const f = [...page.querySelectorAll('a[href],button:not([disabled]),input:not([tabindex="-1"]):not([type="hidden"]),select,textarea,[tabindex="0"]')]
         .filter(el => el.offsetParent !== null);
@@ -3191,7 +3211,7 @@ async function startMusic(){
       if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
     }
-  });
+  }, true);
 
   /* ---- wire up the nav "Hire Me" button (href stays as a no-JS mailto fallback) ---- */
   const hireBtn = $('hireBtn');
