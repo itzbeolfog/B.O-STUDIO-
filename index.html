@@ -998,12 +998,12 @@ body.hm-open{overflow:hidden}
 .hm-input{
   width:100%;padding:13px 14px;border-radius:4px;color:var(--text);
   font:500 16px Inter,system-ui,sans-serif;color-scheme:dark;
-  background:rgba(0,0,0,.4);border:2px solid rgba(106,220,90,.2);
+  background-color:rgba(0,0,0,.4);border:2px solid rgba(106,220,90,.2);
   transition:border-color .2s,box-shadow .2s,background .2s;
 }
 .hm-input::placeholder{color:#6f7787}
 .hm-input:hover{border-color:rgba(106,220,90,.4)}
-.hm-input:focus{outline:none;border-color:var(--mc-grass);box-shadow:0 0 0 4px rgba(106,220,90,.14);background:rgba(0,0,0,.55)}
+.hm-input:focus{outline:none;border-color:var(--mc-grass);box-shadow:0 0 0 4px rgba(106,220,90,.14);background-color:rgba(0,0,0,.55)}
 textarea.hm-input{resize:vertical;min-height:96px;line-height:1.5}
 .hm-field.bad .hm-input,.hm-fieldset.bad .hm-box{border-color:#ff6b76}
 .hm-err{min-height:0;font-size:12px;color:#ff8f98;display:none}
@@ -1054,6 +1054,24 @@ textarea.hm-input{resize:vertical;min-height:96px;line-height:1.5}
 .hm-done .btn{margin-top:22px}
 .hm-page.sent .hm-head,.hm-page.sent .hm-form{display:none}
 
+
+/* date + time (India format: DD/MM/YYYY, 12-hour IST) */
+.hm-datewrap{position:relative}
+.hm-datewrap .hm-input{padding-right:46px}
+.hm-cal{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;display:grid;place-items:center;
+  border:0;border-radius:4px;background:transparent;color:var(--mc-grass);cursor:pointer;transition:background .2s;
+}
+.hm-cal:hover{background:rgba(106,220,90,.14)}
+#hmDatePick{position:absolute;right:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;border:0;padding:0}
+.hm-tsel{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:8px}
+select.hm-input{
+  appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236ADC5A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;
+}
+select.hm-input option{background:#15100a;color:#f9f2e7}
+.hm-field.bad .hm-input{border-color:#ff6b76}
 @media(max-width:600px){
   .hm-row{grid-template-columns:1fr}
   .hm-opts{grid-template-columns:1fr 1fr}
@@ -1739,16 +1757,26 @@ textarea.hm-input{resize:vertical;min-height:96px;line-height:1.5}
         <div class="hm-row">
           <div class="hm-field" data-f="date">
             <label class="hm-label" for="hmDate">Booking date<i>*</i></label>
-            <input class="hm-input" id="hmDate" name="booking_date" type="date">
+            <div class="hm-datewrap">
+              <input class="hm-input" id="hmDate" name="booking_date" type="text" inputmode="numeric" maxlength="10" placeholder="DD/MM/YYYY" autocomplete="off">
+              <button type="button" class="hm-cal" id="hmCal" aria-label="Open calendar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+              </button>
+              <input type="date" id="hmDatePick" tabindex="-1" aria-hidden="true">
+            </div>
             <span class="hm-err"></span>
           </div>
           <div class="hm-field" data-f="time">
-            <label class="hm-label" for="hmTime">Booking time<i>*</i></label>
-            <input class="hm-input" id="hmTime" name="booking_time" type="time">
+            <label class="hm-label" for="hmHour">Booking time (IST)<i>*</i></label>
+            <div class="hm-tsel">
+              <select class="hm-input" id="hmHour" aria-label="Hour"><option value="">Hr</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+              <select class="hm-input" id="hmMin" aria-label="Minutes"><option value="">Min</option><option>00</option><option>15</option><option>30</option><option>45</option></select>
+              <select class="hm-input" id="hmAp" aria-label="AM or PM"><option value="">AM/PM</option><option>AM</option><option>PM</option></select>
+            </div>
             <span class="hm-err"></span>
           </div>
         </div>
-        <div class="hm-hint" id="hmTz" style="margin-top:-12px">Time is in your local timezone.</div>
+        <div class="hm-hint" id="hmTz" style="margin-top:-12px">All bookings are in Indian Standard Time (IST, UTC+5:30). Date format: DD/MM/YYYY.</div>
 
         <div class="hm-field" data-f="msg">
           <label class="hm-label" for="hmMsg">About your project <span class="hm-opt-note">(optional)</span></label>
@@ -2916,7 +2944,8 @@ async function startMusic(){
   const $ = id => document.getElementById(id);
   const page = $('hirePage'), form = $('hmForm');
   const fName = $('hmName'), fEmail = $('hmEmail'), fHandle = $('hmHandle'),
-        fDate = $('hmDate'), fTime = $('hmTime'), fMsg = $('hmMsg');
+        fDate = $('hmDate'), fPick = $('hmDatePick'), fMsg = $('hmMsg'),
+        fHour = $('hmHour'), fMin = $('hmMin'), fAp = $('hmAp');
   const submitBtn = $('hmSubmit'), statusEl = $('hmStatus'), fallback = $('hmFallback');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -2928,14 +2957,42 @@ async function startMusic(){
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const method = () => form.querySelector('input[name="method"]:checked').value;
 
-  /* ---- local timezone hint + min date ---- */
+  /* ---- India-based date & time: DD/MM/YYYY, 12-hour clock, always IST (UTC+5:30) ---- */
   const tz = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e){ return ''; } })();
   const pad = n => String(n).padStart(2, '0');
-  const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
-  function refreshDateBounds(){
-    fDate.min = todayStr();
-    $('hmTz').textContent = tz ? `Time is in your local timezone (${tz}). I'll convert it on my side.` : 'Time is in your local timezone.';
+  const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function istNow(){                                   // current wall-clock time in India, whatever the visitor's timezone
+    const t = new Date(Date.now() + 330 * 60000);
+    return { y:t.getUTCFullYear(), mo:t.getUTCMonth() + 1, d:t.getUTCDate(), h:t.getUTCHours(), mi:t.getUTCMinutes() };
   }
+  function parseDate(str){                             // "15/01/2030" -> {y,mo,d,wd} or null (rejects 31/02 etc.)
+    const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(str.trim());
+    if (!m) return null;
+    const d = +m[1], mo = +m[2], y = +m[3], dt = new Date(Date.UTC(y, mo - 1, d));
+    if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== mo - 1 || dt.getUTCDate() !== d) return null;
+    return { y, mo, d, wd: DAYS[dt.getUTCDay()] };
+  }
+  const dateKey = o => o.y * 10000 + o.mo * 100 + o.d;
+  function to24(){ return (+fHour.value % 12) + (fAp.value === 'PM' ? 12 : 0); }
+  function refreshDateBounds(){
+    const n = istNow();
+    fPick.min = `${n.y}-${pad(n.mo)}-${pad(n.d)}`;
+  }
+  // typing mask: digits only, slashes added automatically (15012030 -> 15/01/2030)
+  fDate.addEventListener('input', () => {
+    const v = fDate.value.replace(/\D/g, '').slice(0, 8);
+    fDate.value = v.length > 4 ? v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4)
+                : v.length > 2 ? v.slice(0, 2) + '/' + v.slice(2) : v;
+  });
+  // calendar button -> native picker, result written back as DD/MM/YYYY
+  $('hmCal').addEventListener('click', () => {
+    refreshDateBounds();
+    try { fPick.showPicker(); } catch(e){ fDate.focus(); }
+  });
+  fPick.addEventListener('change', () => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fPick.value);
+    if (m){ fDate.value = `${m[3]}/${m[2]}/${m[1]}`; clearErr('date'); }
+  });
 
   /* ---- method switch: relabel the handle field, auto-fill from email ---- */
   let autoFilled = false;
@@ -2986,13 +3043,16 @@ async function startMusic(){
     else if (method() === 'Email' && !EMAIL_RE.test(handle)) errs.push(['handle', 'That email doesn\'t look right.', fHandle]);
     else if (handle.length > 100) errs.push(['handle', 'That\'s too long.', fHandle]);
 
-    if (!fDate.value) errs.push(['date', 'Pick a booking date.', fDate]);
-    else if (fDate.value < todayStr()) errs.push(['date', 'That date has already passed.', fDate]);
+    const pd = fDate.value.trim() ? parseDate(fDate.value) : null;
+    const now = istNow(), today = { y:now.y, mo:now.mo, d:now.d };
+    if (!fDate.value.trim()) errs.push(['date', 'Enter a booking date (DD/MM/YYYY).', fDate]);
+    else if (!pd) errs.push(['date', 'Use the format DD/MM/YYYY, e.g. 15/01/2030.', fDate]);
+    else if (dateKey(pd) < dateKey(today)) errs.push(['date', 'That date has already passed.', fDate]);
+    else if (pd.y > now.y + 2) errs.push(['date', 'Please pick a date within the next 2 years.', fDate]);
 
-    if (!fTime.value) errs.push(['time', 'Pick a booking time.', fTime]);
-    else if (fDate.value === todayStr()){
-      const n = new Date();
-      if (fTime.value < `${pad(n.getHours())}:${pad(n.getMinutes())}`) errs.push(['time', 'That time has already passed today.', fTime]);
+    if (!fHour.value || !fMin.value || !fAp.value) errs.push(['time', 'Pick the hour, minutes and AM/PM.', !fHour.value ? fHour : !fMin.value ? fMin : fAp]);
+    else if (pd && dateKey(pd) === dateKey(today) && (to24() * 60 + +fMin.value) <= (now.h * 60 + now.mi)){
+      errs.push(['time', 'That time has already passed today (IST).', fHour]);
     }
 
     errs.forEach(([k, msg]) => setErr(k, msg));
@@ -3001,31 +3061,17 @@ async function startMusic(){
   }
 
   /* ---- payload helpers ---- */
-  function fmtDate(d){
-    try { return new Date(d + 'T00:00:00').toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' }); }
-    catch(e){ return d; }
-  }
-  function fmtTime(t){
-    try { const [h, m] = t.split(':').map(Number); return new Date(2000, 0, 1, h, m).toLocaleTimeString(undefined, { hour:'numeric', minute:'2-digit' }); }
-    catch(e){ return t; }
-  }
-  function inStudioTime(){
-    try {
-      return new Date(`${fDate.value}T${fTime.value}`).toLocaleString('en-IN', {
-        timeZone:'Asia/Kolkata', weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'numeric', minute:'2-digit'
-      }) + ' IST';
-    } catch(e){ return ''; }
-  }
+  const bookingDate = () => { const p = parseDate(fDate.value); return `${p.wd}, ${pad(p.d)}/${pad(p.mo)}/${p.y}`; };
+  const bookingTime = () => `${+fHour.value}:${fMin.value} ${fAp.value} IST`;
   function collect(){
     return {
       name: fName.value.trim(),
       email: fEmail.value.trim(),
       contact_method: method(),
       contact_id: fHandle.value.trim(),
-      booking_date: fmtDate(fDate.value),
-      booking_time: fmtTime(fTime.value),
+      booking_date: bookingDate(),
+      booking_time: bookingTime(),
       visitor_timezone: tz || 'unknown',
-      booking_in_IST: inStudioTime(),
       project_details: fMsg.value.trim() || '(none)'
     };
   }
@@ -3033,8 +3079,7 @@ async function startMusic(){
     const body = [
       'Name: ' + d.name, 'Email: ' + d.email,
       'Preferred contact: ' + d.contact_method + ' — ' + d.contact_id,
-      'Booking: ' + d.booking_date + ' at ' + d.booking_time + ' (' + d.visitor_timezone + ')',
-      d.booking_in_IST ? 'In IST: ' + d.booking_in_IST : '',
+      'Booking: ' + d.booking_date + ' at ' + d.booking_time,
       '', 'Project details:', d.project_details
     ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n');
     return 'mailto:' + TO_EMAIL + '?subject=' + encodeURIComponent('Hire Request — ' + d.name) + '&body=' + encodeURIComponent(body);
@@ -3075,11 +3120,14 @@ async function startMusic(){
         }, d))
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || data.success === false || data.success === 'false') throw new Error(data.message || ('HTTP ' + res.status));
+      if (!res.ok || !(data.success === true || data.success === 'true')) throw new Error(data.message || ('Unexpected reply from the mail service (HTTP ' + res.status + ')'));
       showDone(d);
     } catch (err){
       console.error('Hire form send failed:', err);
-      setStatus('Couldn\'t send your request just now. Try again, or send it with your email app.', true);
+      const why = (err && err.name === 'TypeError')
+        ? 'Network request blocked (ad blocker, offline, or page opened as a local file).'
+        : (err && err.message) ? String(err.message).slice(0, 220) : '';
+      setStatus('Couldn\'t send your request just now. Try again, or send it with your email app.' + (why ? '  [Reason: ' + why + ']' : ''), true);
       $('hmMailto').href = mailtoHref(d);
       fallback.classList.add('show');
     } finally {
@@ -3133,7 +3181,7 @@ async function startMusic(){
     if (!page.classList.contains('open')) return;
     if (e.key === 'Escape'){ closeHire(); return; }
     if (e.key === 'Tab'){                          // keep focus inside the page
-      const f = [...page.querySelectorAll('a[href],button:not([disabled]),input:not([tabindex="-1"]):not([type="hidden"]),textarea,[tabindex="0"]')]
+      const f = [...page.querySelectorAll('a[href],button:not([disabled]),input:not([tabindex="-1"]):not([type="hidden"]),select,textarea,[tabindex="0"]')]
         .filter(el => el.offsetParent !== null);
       if (!f.length) return;
       const first = f[0], last = f[f.length - 1];
