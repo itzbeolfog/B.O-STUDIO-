@@ -1090,6 +1090,59 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
   .hm-page.open,.hm-shell,.hm-done.show{animation:none!important}
 }
 </style>
+
+<style id="latestWorkStyles">
+#latest{position:relative}
+.lw-stage{
+  position:relative;width:100%;aspect-ratio:16/9;border-radius:22px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:var(--shadow),0 0 0 1px rgba(106,220,90,.10);
+  background:#050302;isolation:isolate;
+}
+.lw-cover{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(180deg,rgba(8,4,2,.25),rgba(8,4,2,.75)),
+    url("https://drive.google.com/thumbnail?id=1IiH788ImuZQex_DTo5aN-TPnbmzIl6-_&sz=w1920") center/cover no-repeat,
+    radial-gradient(circle at 30% 30%,#1b2a17,#0b0704 70%);
+}
+.lw-cover:after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+.lw-tag{
+  position:absolute;left:22px;bottom:20px;z-index:4;pointer-events:none;
+  font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(15px,2.2vw,24px);text-shadow:0 2px 14px rgba(0,0,0,.7);transition:opacity .35s ease;
+}
+.lw-tag small{display:block;font:700 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.lw-btn{
+  position:absolute;z-index:5;left:50%;top:50%;width:88px;height:88px;margin:-44px 0 0 -44px;
+  border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;
+  background:var(--accent);color:#07130a;
+  box-shadow:0 0 0 8px rgba(106,220,90,.22),0 12px 40px rgba(106,220,90,.45);
+  animation:lwPulse 2s ease-in-out infinite;
+}
+.lw-btn svg{width:34px;height:34px;margin-left:5px;fill:currentColor}
+@keyframes lwPulse{0%,100%{box-shadow:0 0 0 8px rgba(106,220,90,.22),0 12px 40px rgba(106,220,90,.45)}50%{box-shadow:0 0 0 18px rgba(106,220,90,.06),0 12px 50px rgba(106,220,90,.6)}}
+.lw-btn:focus-visible{outline:3px solid #fff;outline-offset:6px}
+.lw-note{margin-top:14px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.lw-note a{color:var(--accent);font-weight:700}
+@media(max-width:700px){.lw-btn{width:68px;height:68px;margin:-34px 0 0 -34px}.lw-btn svg{width:26px;height:26px}.lw-tag{left:14px;bottom:12px}}
+
+/* full-screen layers (live outside the section so they can cover the whole page) */
+#lwFx{position:fixed;inset:0;width:100vw;height:100vh;z-index:9995;pointer-events:none;display:none}
+#lwFull{will-change:clip-path;position:fixed;inset:0;z-index:9990;background:#000;display:none;clip-path:inset(0 100% 0 0)}
+#lwFull .lw-media{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;display:block}
+#lwClose{
+  position:fixed;top:16px;right:16px;z-index:9996;height:42px;padding:0 16px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(10,10,10,.6);color:#fff;
+  font:700 13px Inter,sans-serif;letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .4s ease;display:none;
+}
+#lwClose.on{opacity:1;pointer-events:auto}
+#lwClose:hover{background:rgba(106,220,90,.25);border-color:var(--accent)}
+</style>
 </head>
 <body class="intro-active">
 <!-- ===== INTRO: opening_video welcome screen ===== -->
@@ -1126,6 +1179,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
 <nav class="nav">
   <a class="brand" href="#top">BEOLF <span>O.G</span></a>
   <div class="navlinks">
+    <a href="#latest">Latest</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
@@ -1179,6 +1233,27 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div style="color:#8791a1;font-size:11px;letter-spacing:.08em">YOUTUBE • EDITING • MINECRAFT ANIMATION</div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="latest">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Fresh off the timeline</div><h2>My Latest<br><span class="gradient">Work.</span></h2></div>
+      <p>Crafted frame by frame, with love for story and detail. This is the newest piece to come out of the studio.</p>
+    </div>
+    <div class="lw-stage reveal" id="lwStage">
+      <div class="lw-cover" id="lwCover"></div>
+      <div class="lw-tag" id="lwTag"><small>Latest Project</small>Watch in full quality</div>
+      <button class="lw-btn" id="lwBtn" type="button" aria-label="Play latest work video">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <div class="lw-note">
+      <span>Tip: use the gear icon in the player to pick the highest quality.</span>
+      <a href="https://drive.google.com/file/d/1IiH788ImuZQex_DTo5aN-TPnbmzIl6-_/view" target="_blank" rel="noopener">Open original in Drive ↗</a>
     </div>
   </div>
 </section>
@@ -3219,6 +3294,307 @@ async function startMusic(){
   window.openHireForm = openHire;
 
   applyMethod();
+})();
+</script>
+
+
+<canvas id="lwFx" aria-hidden="true"></canvas>
+<div id="lwFull" aria-label="Latest work video"></div>
+<button id="lwClose" type="button">✕ Close</button>
+<script>
+(function(){
+  /* ---------- VIDEO SOURCE ----------
+     Google Drive's player can't be auto-clicked from another page (browser security),
+     so it needs one click on Drive's own play button. For true autoplay switch to:
+       {type:'youtube', id:'YOUTUBE_VIDEO_ID'}   (unlisted is fine)
+       {type:'mp4', src:'https://your-host/video.mp4'}                                  */
+  const VIDEO = { type:'drive', id:'1IiH788ImuZQex_DTo5aN-TPnbmzIl6-_' };
+
+  const stage = document.getElementById('lwStage');
+  if(!stage) return;
+  const btn = document.getElementById('lwBtn'), tag = document.getElementById('lwTag'),
+        fx = document.getElementById('lwFx'), full = document.getElementById('lwFull'),
+        closeBtn = document.getElementById('lwClose'), ctx = fx.getContext('2d',{desynchronized:true});
+
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t;
+  const easeInOut=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const easeOutBack=t=>{const c1=1.7,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)};
+  const easeOutCubic=t=>1-Math.pow(1-t,3);
+
+  let state='idle', dpr=1, VW=0, VH=0;
+  function sizeCanvas(){
+    dpr=Math.min(window.devicePixelRatio||1,dprCap); VW=window.innerWidth; VH=window.innerHeight;
+    fx.width=Math.round(VW*dpr); fx.height=Math.round(VH*dpr);
+  }
+
+  /* ---------- VOXEL EARTH (real cubes, coarse continents) ---------- */
+  const LAND=[
+    // North America
+    [[-168,65],[-156,71],[-125,70],[-95,72],[-82,68],[-88,58],[-79,52],[-78,62],[-65,60],[-60,52],[-53,47],[-66,44],[-70,42],[-76,35],[-81,31],[-80,25],[-83,29],[-90,30],[-97,26],[-97,21],[-92,18],[-88,21],[-87,15],[-83,10],[-79,8],[-84,9],[-92,14],[-105,20],[-110,24],[-113,31],[-117,32],[-121,35],[-124,41],[-124,48],[-130,54],[-140,59],[-150,60],[-160,58],[-165,62]],
+    // South America
+    [[-79,8],[-72,12],[-62,10],[-52,5],[-50,0],[-35,-6],[-39,-14],[-41,-22],[-48,-26],[-53,-34],[-58,-38],[-65,-41],[-66,-47],[-69,-52],[-72,-54],[-75,-48],[-73,-40],[-71,-30],[-70,-18],[-76,-14],[-81,-6],[-80,-1],[-78,3]],
+    // Africa
+    [[-17,21],[-13,28],[-6,35],[10,37],[20,32],[32,31],[35,28],[43,12],[51,12],[40,-2],[40,-15],[35,-24],[32,-29],[20,-35],[18,-32],[12,-18],[13,-8],[9,-1],[9,4],[-8,4],[-15,11],[-17,15]],
+    // Eurasia
+    [[-9,37],[-9,43],[-2,44],[-4,48],[2,51],[8,54],[10,57],[6,58],[5,62],[15,69],[25,71],[40,68],[60,70],[80,73],[105,78],[140,72],[170,70],[180,66],[170,62],[160,60],[156,52],[143,59],[135,54],[140,48],[130,42],[129,35],[126,35],[122,40],[121,31],[119,25],[110,20],[108,21],[106,11],[100,13],[103,1],[99,8],[98,17],[94,17],[92,22],[88,22],[80,15],[77,8],[73,17],[72,21],[67,25],[57,25],[52,27],[48,30],[44,37],[36,36],[27,37],[23,36],[20,40],[13,45],[16,41],[12,44],[3,43],[-2,37]],
+    // Arabia
+    [[35,28],[43,12],[52,16],[59,22],[56,26],[50,26],[48,30],[39,30]],
+    // SE Asia islands
+    [[95,5],[106,-6],[120,-9],[130,-4],[120,2],[110,3]],
+    // Australia
+    [[114,-22],[122,-18],[130,-12],[137,-12],[142,-11],[146,-19],[153,-26],[150,-37],[141,-38],[135,-34],[129,-32],[115,-34]],
+    // Britain + Japan
+    [[-5,50],[1,51],[0,58],[-6,58]],
+    [[130,31],[141,36],[142,44],[140,41],[134,35]]
+  ];
+  const ICE=[[[-73,78],[-60,82],[-30,83],[-20,75],[-22,70],[-40,62],[-50,64],[-58,75]]];
+  function inPoly(lon,lat,p){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const xi=p[i][0],yi=p[i][1],xj=p[j][0],yj=p[j][1];if(((yi>lat)!==(yj>lat))&&(lon<(xj-xi)*(lat-yi)/(yj-yi)+xi))c=!c}return c}
+  function terrain(lon,lat){
+    if(lat<-64||lat>82) return 2;
+    for(const p of ICE) if(inPoly(lon,lat,p)) return 2;
+    for(const p of LAND) if(inPoly(lon,lat,p)) return 1;
+    return 0;
+  }
+  const hash=(a,b,c)=>{const n=Math.sin(a*127.1+b*311.7+c*74.7)*43758.5453;return n-Math.floor(n)};
+  const PAL={
+    ocean:[[44,82,200],[52,96,214],[38,72,186]],
+    grass:[[93,155,58],[78,138,44],[110,172,66],[86,146,50]],
+    sand:[[219,203,140],[205,188,124]],
+    dirt:[[134,96,67],[118,84,58]],
+    ice:[[232,244,250],[208,230,240]]
+  };
+  const VR=9, DIRS=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const inSph=(x,y,z)=>Math.hypot(x,y,z)<=VR+.5;
+  const vox=[];
+  for(let x=-VR-1;x<=VR+1;x++)for(let y=-VR-1;y<=VR+1;y++)for(let z=-VR-1;z<=VR+1;z++){
+    if(!inSph(x,y,z)) continue;
+    const f=DIRS.map(d=>!inSph(x+d[0],y+d[1],z+d[2]));
+    if(!f.some(Boolean)) continue;
+    const d=Math.hypot(x,y,z), lat=Math.asin(y/d)*57.2958, lon=Math.atan2(x,z)*57.2958, r=hash(x,y,z), tr=terrain(lon,lat);
+    let col;
+    if(tr===2) col=PAL.ice[r>.5?1:0];
+    else if(tr===1){
+      const desert=(lat>14&&lat<31&&lon>-16&&lon<52)||(lat<-19&&lat>-30&&lon>121&&lon<140);
+      col = desert ? PAL.sand[r>.5?1:0] : (r>.88 ? PAL.dirt[r>.94?1:0] : PAL.grass[Math.floor(r*4)%4]);
+    } else col=PAL.ocean[Math.floor(r*3)%3];
+    vox.push({x,y,z,f,col,r,n:hash(z,x,y),px:0,py:0,pz:0});
+  }
+  /* typed-array copy of the voxels + shared colour table (no per-frame allocations) */
+  const NV=vox.length, VX=new Float32Array(NV), VY=new Float32Array(NV), VZ=new Float32Array(NV), VRND=new Float32Array(NV),
+        PX=new Float32Array(NV), PY=new Float32Array(NV), PZ=new Float32Array(NV), FM=new Uint8Array(NV), CI=new Uint16Array(NV);
+  const colList=[], colMap=new Map(), ordIdx=Array.from({length:NV},(_,i)=>i);
+  vox.forEach((v,i)=>{
+    VX[i]=v.x; VY[i]=v.y; VZ[i]=v.z; VRND[i]=v.r;
+    FM[i]=v.f.reduce((m,on,k)=>m|(on?1<<k:0),0);
+    const nq=Math.min(3,Math.floor(v.n*4)), key=v.col.join(',')+'|'+nq;
+    let id=colMap.get(key);
+    if(id===undefined){id=colList.length;colList.push([v.col[0],v.col[1],v.col[2],.92+.16*(nq+.5)/4]);colMap.set(key,id)}
+    CI[i]=id;
+  });
+  const LX=-.35,LY=.65,LZ=.7, LL=Math.hypot(LX,LY,LZ), TILT=.36, CT=Math.cos(TILT), ST=Math.sin(TILT);
+  const SXs=[1,-1,-1,1], SYs=[1,1,-1,-1], AX=[[0,0,0],[0,0,0],[0,0,0]], VIS=[0,0,0], STR=[null,null,null];
+  let dprCap=1.5, maxSamples=3, RC=1, RS=0;
+  function setRoll(r){RC=Math.cos(r);RS=Math.sin(r)}
+
+  function project(rot){                          // rotate every voxel centre (no allocations)
+    const cr=Math.cos(rot), sr=Math.sin(rot);
+    for(let i=0;i<NV;i++){
+      const x=VX[i], z1=-x*sr+VZ[i]*cr;
+      const px0=x*cr+VZ[i]*sr, py0=VY[i]*CT-z1*ST;
+      PX[i]=px0*RC-py0*RS; PY[i]=px0*RS+py0*RC; PZ[i]=VY[i]*ST+z1*CT;
+    }
+  }
+  function sortDepth(rot){ project(rot); ordIdx.sort((p,q)=>PZ[p]-PZ[q]); }
+
+  function drawEarth(cx,cy,Rpx,rot,asm,alpha){
+    project(rot);
+    const cr=Math.cos(rot), sr=Math.sin(rot);
+    AX[0][0]=cr;  AX[0][1]=sr*ST;  AX[0][2]=-sr*CT;   // rotated x axis
+    AX[1][0]=0;   AX[1][1]=CT;     AX[1][2]=ST;        // rotated y axis
+    AX[2][0]=sr;  AX[2][1]=-cr*ST; AX[2][2]=cr*CT;    // rotated z axis
+    for(let a=0;a<3;a++){ const ax=AX[a][0], ay=AX[a][1]; AX[a][0]=ax*RC-ay*RS; AX[a][1]=ax*RS+ay*RC; }   // lean
+    for(let a=0;a<3;a++){                           // only one of the two faces per axis can face the camera
+      const N=AX[a], sg=N[2]>.02?1:(N[2]<-.02?-1:0); VIS[a]=sg;
+      if(sg){
+        const dot=sg*(N[0]*LX+N[1]*LY+N[2]*LZ)/LL, sh=.5+.55*Math.max(dot,0);
+        STR[a]=colList.map(c=>{const m=sh*c[3];return 'rgb('+Math.min(255,c[0]*m|0)+','+Math.min(255,c[1]*m|0)+','+Math.min(255,c[2]*m|0)+')'});
+      }
+    }
+    const k=Rpx/(VR+.5), D=VR*3.5;
+    ctx.globalAlpha=alpha; ctx.lineWidth=Math.max(.6,k*.035); ctx.strokeStyle='rgba(8,18,8,.38)'; ctx.lineJoin='round';
+    let lastFill='';
+    for(let oi=0;oi<NV;oi++){
+      const i=ordIdx[oi], m=FM[i];
+      let ev=1;
+      if(asm<1){ ev=easeOutBack(clamp(asm*1.7-VRND[i]*.7,0,1)); if(ev<=.001) continue; }
+      const cxv=PX[i]*ev, cyv=PY[i]*ev, czv=PZ[i]*ev, h=.5*ev*1.02;
+      for(let a=0;a<3;a++){
+        const sg=VIS[a]; if(!sg) continue;
+        if(!((m>>(a*2+(sg>0?0:1)))&1)) continue;
+        const N=AX[a], B=AX[(a+1)%3], C=AX[(a+2)%3];
+        const bx=cxv+sg*h*N[0], by=cyv+sg*h*N[1], bz=czv+sg*h*N[2];
+        ctx.beginPath();
+        for(let q=0;q<4;q++){
+          const u=SXs[q]*h, w=SYs[q]*h;
+          const X=bx+u*B[0]+w*C[0], Y=by+u*B[1]+w*C[1], Z=bz+u*B[2]+w*C[2], pp=D/(D-Z)*k;
+          if(q) ctx.lineTo(cx+X*pp,cy-Y*pp); else ctx.moveTo(cx+X*pp,cy-Y*pp);
+        }
+        ctx.closePath();
+        const fill=STR[a][CI[i]];
+        if(fill!==lastFill){ctx.fillStyle=fill;lastFill=fill}
+        ctx.fill(); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha=1;
+  }
+  function earthBlur(cx,cy,R,rot,asm,omega){
+    // motion blur = a few translucent samples across the shutter interval (depth order computed once)
+    const n=Math.min(maxSamples, omega>20?3 : omega>8?2 : 1), shutter=.011;
+    sortDepth(rot);
+    if(n===1){ drawEarth(cx,cy,R,rot,asm,1); return; }
+    for(let s=n-1;s>=0;s--) drawEarth(cx,cy,R,rot-s*omega*shutter*.5,asm, s===0?.75:.38);
+  }
+  function drawGlow(cx,cy,R,a){
+    const g=ctx.createRadialGradient(cx,cy,R*.9,cx,cy,R*1.25);
+    g.addColorStop(0,'rgba(110,200,255,'+a+')'); g.addColorStop(1,'rgba(110,200,255,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R*1.25,0,7); ctx.fill();
+  }
+
+  /* ---------- the spinning play button (coin flip + ghost trail) ---------- */
+  function disc(cx,cy,r,ang,alpha){
+    const u=r/44, w=Math.max(Math.abs(Math.cos(ang)),.05);
+    ctx.save(); ctx.globalAlpha=alpha; ctx.translate(cx,cy); ctx.scale(w,1);
+    ctx.beginPath(); ctx.arc(0,0,r*1.18,0,7); ctx.fillStyle='rgba(106,220,90,.22)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(0,0,r,0,7); ctx.fillStyle='#6adc5a'; ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-.7*u,-9.9*u); ctx.lineTo(-.7*u,9.9*u); ctx.lineTo(14.9*u,0); ctx.closePath();
+    ctx.fillStyle='#07130a'; ctx.fill(); ctx.restore();
+  }
+  function discBlur(cx,cy,r,ang,omega,alpha){
+    const steps=12, span=Math.min(omega*.018,3.2);
+    for(let i=steps;i>=1;i--) disc(cx,cy,r,ang-span*i/steps,alpha*.08+.02);
+    disc(cx,cy,r,ang,alpha*(omega>25?.55:.95));
+  }
+
+  /* ---------- video ---------- */
+  function mountVideo(){
+    const old=full.querySelector('.lw-media'); if(old) old.remove();
+    let el;
+    if(VIDEO.type==='mp4'){
+      el=document.createElement('video'); el.src=VIDEO.src; el.controls=true; el.playsInline=true; el.autoplay=true;
+      const p=el.play&&el.play(); if(p&&p.catch) p.catch(()=>{});
+    } else {
+      el=document.createElement('iframe');
+      el.src = VIDEO.type==='youtube'
+        ? 'https://www.youtube.com/embed/'+VIDEO.id+'?autoplay=1&rel=0&modestbranding=1&vq=hd1080'
+        : 'https://drive.google.com/file/d/'+VIDEO.id+'/preview';
+      el.allow='autoplay; fullscreen; picture-in-picture; encrypted-media'; el.allowFullscreen=true; el.title='My Latest Work';
+    }
+    el.className='lw-media'; full.appendChild(el);
+  }
+  function askFullscreen(){
+    const el=document.documentElement, fn=el.requestFullscreen||el.webkitRequestFullscreen;
+    if(fn){ try{ const p=fn.call(el); if(p&&p.catch) p.catch(()=>{}); }catch(e){} }
+  }
+  function exitFullscreen(){
+    if(document.fullscreenElement||document.webkitFullscreenElement){
+      const fn=document.exitFullscreen||document.webkitExitFullscreen; try{ const p=fn.call(document); if(p&&p.catch) p.catch(()=>{}); }catch(e){}
+    }
+  }
+  function showPlaying(){
+    state='playing';
+    fx.style.display='none'; full.style.display='block'; full.style.clipPath='none';
+    closeBtn.style.display='block'; requestAnimationFrame(()=>closeBtn.classList.add('on'));
+  }
+  function closeAll(){
+    state='idle';
+    exitFullscreen();
+    const m=full.querySelector('.lw-media'); if(m) m.remove();
+    full.style.display='none'; full.style.clipPath='inset(0 100% 0 0)';
+    fx.style.display='none'; closeBtn.classList.remove('on'); closeBtn.style.display='none';
+    btn.style.visibility='visible'; tag.style.opacity=1;
+    unlockScroll(); resumeBg();
+  }
+  let pausedBg=[];
+  function pauseBg(){ document.querySelectorAll('video').forEach(v=>{ if(!v.paused && !full.contains(v)){ v.pause(); pausedBg.push(v); } }); }
+  function resumeBg(){ pausedBg.forEach(v=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }); pausedBg=[]; }
+  function lockScroll(){ const sb=window.innerWidth-document.documentElement.clientWidth; if(sb>0) document.body.style.paddingRight=sb+'px'; document.documentElement.style.overflow='hidden'; }
+  function unlockScroll(){ document.documentElement.style.overflow=''; document.body.style.paddingRight=''; }
+  closeBtn.addEventListener('click', closeAll);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && state==='playing') closeAll(); });
+  ['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{
+    if(state==='playing' && !(document.fullscreenElement||document.webkitFullscreenElement)) closeAll();
+  }));
+  window.addEventListener('resize', ()=>{ if(state==='anim') sizeCanvas(); });
+
+  /* ---------- the sequence ---------- */
+  btn.addEventListener('click', function(){
+    if(state!=='idle') return;
+    lockScroll();
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      btn.style.visibility='hidden'; mountVideo(); askFullscreen(); showPlaying(); return;
+    }
+    state='anim'; sizeCanvas(); fx.style.display='block';
+    const r=btn.getBoundingClientRect(), bx=r.left+r.width/2, by=r.top+r.height/2, r0=r.width/2;
+    btn.style.visibility='hidden'; tag.style.opacity=0; setRoll(0);
+
+    const T_A=750, T_B=1400, T_C=1750, T_D=2650, T_E=3800;
+    const rE0=r0*1.15, rPop=rE0*2.2;
+    let curCx=bx, prevCx=bx, roll=0, t0=null, last=null, spin=0, fsAsked=false, mounted=false, ema=16, d1=false, d2=false, bgPaused=false;
+
+    function frame(now){
+      if(state!=='anim') return;
+      if(t0===null){t0=now;last=now}
+      if(window.innerWidth!==VW||window.innerHeight!==VH) sizeCanvas();
+      const t=now-t0, raw=now-last, dt=Math.min(raw/1000,.05); last=now;
+      const vx=(curCx-prevCx)/Math.max(dt,.001); prevCx=curCx;          // px/s, negative = moving left
+      const target=clamp(-vx*.0006,-.4,.4);                             // lean the top toward the direction of travel
+      roll+=(target-roll)*(1-Math.exp(-dt*8)); setRoll(roll);
+      if(t>350){                                    // adaptive quality: drop blur samples / resolution if the device struggles
+        ema=ema*.9+raw*.1;
+        if(ema>26&&!d1){d1=true;maxSamples=2}
+        if(ema>32&&!d2){d2=true;maxSamples=1;dprCap=1;sizeCanvas()}
+      }
+      if(!mounted && t>=T_B){mounted=true;mountVideo();full.style.display='block'}   // load the player early, hidden
+      if(!bgPaused && t>=T_D){bgPaused=true;pauseBg()}
+      ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,VW,VH);
+
+      // angular speed profile (rad/s)
+      let w;
+      if(t<T_A) w=62*(t/T_A);
+      else if(t<T_B) w=lerp(62,26,easeOutCubic((t-T_A)/(T_B-T_A)));
+      else if(t<T_C) w=lerp(26,9,(t-T_B)/(T_C-T_B));
+      else if(t<T_D) w=lerp(9,7,(t-T_C)/(T_D-T_C));
+      else w=12;
+      spin+=w*dt;
+
+      const Rfull=.62*VH, cx0=.34*VH, cyM=VH/2;
+
+      if(t<T_A){                                   // 1) button spins up, motion blur
+        const p=t/T_A;
+        discBlur(bx,by,r0*(1+.15*p),spin,w,1);
+      } else if(t<T_B){                            // 2) button dissolves into voxel cubes
+        const q=(t-T_A)/(T_B-T_A);
+        if(q<.65) discBlur(bx,by,r0*1.15*(1-.45*q),spin,w,1-q/.65);
+        earthBlur(bx,by,rE0*(.9+.1*q),spin,q,w);
+      } else if(t<T_C){                            // 3) pops out of the player
+        const p=(t-T_B)/(T_C-T_B), R=lerp(rE0,rPop,easeOutBack(p));
+        drawGlow(bx,by,R,.25*p); earthBlur(bx,by,R,spin,1,w);
+        if(!fsAsked && t>T_C-250){fsAsked=true;askFullscreen()}
+      } else if(t<T_D){                            // 4) grows to screen size, flies to the left
+        const e=easeInOut((t-T_C)/(T_D-T_C)), R=lerp(rPop,Rfull,e);
+        const cx=lerp(bx,cx0,e), cy=lerp(by,cyM,e); curCx=cx;
+        if(!fsAsked){fsAsked=true;askFullscreen()}
+        drawGlow(cx,cy,R,.25); earthBlur(cx,cy,R,spin,1,w);
+      } else if(t<T_E){                            // 5) sweeps right, revealing the fullscreen video
+        const e=easeInOut((t-T_D)/(T_E-T_D)), cx=lerp(cx0,VW+Rfull*1.2,e); curCx=cx;
+        const edge=clamp(cx-.36*VH,0,VW+2);
+        full.style.clipPath='inset(0 '+Math.max(0,VW-edge)+'px 0 0)';
+        drawGlow(cx,cyM,Rfull,.25); earthBlur(cx,cyM,Rfull,spin,1,w);
+      } else { showPlaying(); return; }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
 })();
 </script>
 
