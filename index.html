@@ -1177,6 +1177,55 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
 #lwClose.on{opacity:1;pointer-events:auto}
 #lwClose:hover{background:rgba(255,43,214,.3);border-color:#ff2bd6}
 </style>
+<style id="clientStyles">
+.client-strip{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 18px;padding:12px 18px;border:1px solid var(--line);border-radius:18px;background:var(--panel);backdrop-filter:blur(18px);box-shadow:0 10px 30px rgba(0,0,0,.16)}
+.client-logo{position:relative;width:44px;height:44px;border-radius:50%;overflow:hidden;flex:none;border:2px solid rgba(106,220,90,.45);background:linear-gradient(135deg,rgba(106,220,90,.25),rgba(34,211,238,.2));display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:700;color:#fff}
+.client-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.client-id{flex:1;min-width:140px}
+.client-label{text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-size:10px;font-weight:800}
+.client-name{display:inline-block;font-family:"Space Grotesk",sans-serif;font-size:19px;letter-spacing:-.02em;line-height:1.2}
+.client-subs{text-align:right;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.client-subs b{display:block;font-family:"Space Grotesk",sans-serif;font-size:21px;color:var(--text);letter-spacing:-.03em;text-transform:none}
+</style>
+<style id="orangeTheme">
+/* Latest Work panel = Junkeyy orange (static, no disco). Disco lives on .mods-stage */
+@keyframes lwOrangeGlow{
+  0%,100%{border-color:#ff8a00;box-shadow:var(--shadow),0 0 46px rgba(255,138,0,.5)}
+  33%{border-color:#ffc400;box-shadow:var(--shadow),0 0 46px rgba(255,196,0,.5)}
+  66%{border-color:#ff5a00;box-shadow:var(--shadow),0 0 46px rgba(255,90,0,.5)}
+}
+@keyframes lwOrangePulse{0%,100%{box-shadow:0 0 0 8px rgba(255,138,0,.28),0 12px 40px rgba(255,138,0,.6)}50%{box-shadow:0 0 0 18px rgba(255,138,0,.08),0 12px 50px rgba(255,170,0,.8)}}
+.lw-orange{border-color:#ff8a00;box-shadow:var(--shadow),0 0 46px rgba(255,138,0,.5);background:#1a0a00;animation:lwOrangeGlow 6s linear infinite}
+.lw-orange .lw-cover{background:
+  linear-gradient(180deg,rgba(70,22,0,.22),rgba(40,10,0,.72)),
+  url("https://drive.google.com/thumbnail?id=1iR6ObCtftjCX9ZnmghkOGUQbN1QWXwVp&sz=w1920") center/cover no-repeat,
+  radial-gradient(circle at 30% 30%,#ffb000,#c23a00 75%)}
+.lw-orange .lw-cover:before,.lw-orange .lw-cover:after{display:none}
+.lw-orange .lw-tag small{background:linear-gradient(90deg,#ff5a00,#ffc400,#ff8a00,#ff5a00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.lw-orange .lw-btn{background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.65),transparent 38%),linear-gradient(135deg,#ffc400,#ff6a00);animation:lwOrangePulse 2s ease-in-out infinite;box-shadow:0 0 0 8px rgba(255,138,0,.28),0 12px 40px rgba(255,138,0,.6)}
+.lw-orange iframe.lw-inline{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:6;background:#000}
+#latest .eyebrow{background:linear-gradient(90deg,#ff5a00,#ffc400,#ff8a00,#ff5a00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+#latest .gradient{background:linear-gradient(90deg,#ff5a00,#ff8a00,#ffc400,#ff8a00,#ff5a00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.lw-note a{color:#ffb300}
+.client-strip{border-color:rgba(255,150,0,.42)}
+.client-logo{border-color:#ff8a00;background:#ff8a00}
+.client-label{color:#ffb300}
+/* Immersive mods: disco button + disco video panel */
+.lw-mods{max-width:760px;margin:32px auto 0;text-align:center}
+.mods-btn{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;padding:16px 30px;border-radius:999px;font-family:"Space Grotesk",sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em;color:#12021f;
+  background:linear-gradient(90deg,#ff2bd6,#ff6b00,#ffe600,#00ff85,#00e5ff,#7c4dff,#ff2bd6);background-size:200% 100%;animation:lwSlide 4s linear infinite;
+  box-shadow:0 0 0 3px rgba(255,255,255,.25),0 12px 38px rgba(255,43,214,.5);transition:transform .25s}
+.mods-btn:hover{transform:translateY(-3px) scale(1.03)}
+.mods-stage .lw-cover{background:
+  linear-gradient(180deg,rgba(16,4,32,.3),rgba(8,2,20,.78)),
+  url("https://img.youtube.com/vi/KuAJbJnPm5c/maxresdefault.jpg") center/cover no-repeat,
+  url("https://img.youtube.com/vi/KuAJbJnPm5c/hqdefault.jpg") center/cover no-repeat,
+  radial-gradient(circle at 30% 30%,#2b0f40,#0a0420 70%)}
+.mods-stage .lw-tag{text-align:left}
+.mods-cap{margin-top:12px;color:var(--muted);font-size:13px}
+.mods-cap a{color:#00e5ff;font-weight:700}
+@media(prefers-reduced-motion:reduce){.lw-orange,.mods-btn{animation:none}}
+</style>
 </head>
 <body class="intro-active">
 <!-- ===== INTRO: opening_video welcome screen ===== -->
@@ -1278,16 +1327,31 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
       <div><div class="eyebrow">Fresh off the timeline</div><h2>My Latest<br><span class="gradient">Work.</span></h2></div>
       <p>Crafted frame by frame, with love for story and detail. This is the newest piece to come out of the studio.</p>
     </div>
-    <div class="lw-stage reveal" id="lwStage">
-      <div class="lw-cover" id="lwCover"></div>
-      <div class="lw-tag" id="lwTag"><small>Latest Project</small>Watch in full quality</div>
-      <button class="lw-btn" id="lwBtn" type="button" aria-label="Play latest work video">
+    <div class="client-strip reveal">
+      <div class="client-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCACgAKADASIAAhEBAxEB/8QAHQAAAgIDAQEBAAAAAAAAAAAABQYECAIDBwABCf/EAD8QAAIBAwIEAggEBAQFBQAAAAECAwAEEQUhBhIxQQdRExQiMmFxgZEIQqGxI1LB0TNEYoIXQ1OSsnJzg6Lw/8QAHAEAAgMBAQEBAAAAAAAAAAAABAYDBQcCCAAB/8QAOxEAAQMCAwUFBgMHBQAAAAAAAQACAwQRBSExBhJBYYETUXGRoRQiMrHB0QdS4RUjJTRCcvBiY4KSwv/aAAwDAQACEQMRAD8AtceYk9a+HI3Oa8X5c4O9Y3NxF6BQM5/avJACdQ29lreQjv8ArWHp1CHmzn51Gllx361isZmh9IJFUZxg121qKEIAuV9ec594/etZuiEK5+tRrp/QuVLqcHGR3qF63GA3OCTj2TnoalDEUyC4uEQM58z961+sDPU0MN0M4JxXw3A5OfmGK7EaJbSokbjfqa8Lg9ycd96Ex3SuxBPyr5JdKr8qtXXZrv2ZGZLhOb+GWx8TX1Lj2SDue29BVuu2RW1LgEdfaz0r7s1+GmR0xzJgvhRnGS3SsRKezbfOh5vJnUCQkhdtxWS3QwQrEZGD8a5cwKAwHiiSTH+Y/epCynHX9aERzA96npceihIVkYOOmNxUZYoHxWU1ZT05v1rcJ2IC8xwKHqzcgfoDsN63Ix61GWoV8amqSzAZ61n7SON96jI3ka2huYjJriyHIso00mGbB71Amn8zUm9EkZLPGUBJABoLcTbkA1I1qPp4t7NZS3J33FRhqU8BbkfAPY7ih2palBYwo0npXkkcRRQwoZJJnPREQbsx8hU+LgvxLvrcXMXC9haRsMrFfakEmI+IRGCn4Zq6w/BayuBNNEXAdyteziiaDM4NB7yBfwvr9FDkvhzOZSXLZ3J6Hz+NRZboAE1JueC/EmFS0nBTygd7XUIJPsGKmgd3pnFlqCbzgviSEDqVsjMB9Yy1Gv2exCL44HDoUfTupn5MkafBzT8itz3+2O9ajqGPeOfrQG51NLckXcV5aHuLm1lix/3KKhtrunOcLqNqf/lUfvQ5o3syc0joreOhc4XDUzDUDnY18Oob55qXUv0f/ClR8/ysD+1ZNK5jEhdcEkYzv9q+9nUnsQ0smJdQGc829SY74kj2vtSqtzhAT+tS31B2ghB9EMLtydT23r8NOuH0PcnE3bJaKDPzIdwvx71lb3sIcemBZfgaUYrx+TmLjGPOt8d/t1qF0CBkoCE3Jdq0nsbA9BUpLgnfPSlW21BlkVgzBgduU71LjvG5skn70O6GyDkoyE1Q3RDKebONxRFrv0wHb4UqQXWcb0VtrgYBzmhnssqualtmjsEoEgLAMBvg9DUnnBk5gAAT0HahUMwyPKiIuPTMpKqCBjCjFQEKrljsUP1G7E8uFDYHQHzoRqcYt0VgTkkj7VJnkKyMVG46fA0K1K5mmADgADy86njbdW1LCRYDRH/CTTrXU/ETWtbvAry6XHFZWatv6NpE9JK4/wBRHIufIEd67bVU9I43bgLxG9Ldfw7DVYk5pD7qyx5GT8CrAfY+dd907xF0G9tEleV05gDlRzKfkRtXoHYyWB2Fxsi1Go531SttdS1EVWJZAdxzW7p4ZCxA5717jnfim+vYFBYuLeHpjhdSiU/6tqJW19Z3Yza3Mco/0HNNaVVvwCMHeoN1omjXoIvNJsbgHqJrdH/cVPr1fhaDqF017mG7TZKt54Z+H18D6zwXoTE91skQ/dQKDXHgf4YzqeXhv1cn81tdTRY+z4rodeoaShppPjjafEBHxYxXxZRzvHg4/dclufw9cGSIwtNS4gs2/LyXvpAv0dTmuP8AHvAOt+HmoweuXI1DSrp+S31BE5CHxn0cq9A2ASCNjg9DtVuq5n47XFh/wW1i2ueQy8sUkOeokEqcpHxqgxnZ6ikpXvYwNc0EgjLTNNGzu1OIe3RQTyGRj3BpBzOZtcHXLyKrlbXEJCq7Njvg1vgLzOfRDmA/alhLgg9alLfG3t5JsthUJIB64GcVkr4VsclLfRM1peyDUYbW1guLu7feO2tYmmkcfBVGcfHpRq7l1TSV9b4h4a1jTbbHKs17aukSntzOMgfXFd28LeCrLhHga1cwo2rXsSXF/dEe27sM8mf5FzygdNs9SadpYopoHhljV43UqyMMhgeoI7inum2BjkgDp5CHkcNB91ldftpEypdHDFvMBte9ieYyy5Xv00VWobobMvLg7gjp9KL2k/N3qJxlw7Bwb4j3eiacvLplxAuoWkI3FuCxWSMf6QwyB2DY7V9sJbf1YFgfSDPc7+VZnimHvoqh9PJq02TA4x1ELZ482uAI6/bQ80x28oyMnNE4pAWBAxv0FAbQsxyATjrgUYt2Kn2tiDgqRVK9qpKiOxUG4ZTJIyjlGdh1xQa8zg70XnZQjZB5s7HO1CbkZXO2/bNTxhH0mSV9e06z1iwazvo+dCcqwOGQ+ansaQX4V1KwlZdM4gljQHYe0p/+pro16cAgbnzoFc2x9WeX0yjl/L3q7o6iSLJhsnCgq5I2dmD7p4EAj1Ss03HmnMVTiGU4/K0zfswp+8JfEfXdO45i0ziS8Mi3YCwN7OOYdiR5/vjzpKvJ3ZyXYk+ZNCLlnJSWFyk8TCSJx1VhuKaMOxqqp5WvLyQOFzY/REV2C0mKUz4JYWBzhk4NAIPA3HPXvGS/QC3nS5tUmQ5VhmttJ/htrycQ8A6fqSkZngWQjybGGH0INOFbDG9sjQ9uhzXm+aF8MjopBZzSQfEZFcO8VPFnVPD/AI0i0y4tbkW88AnhniZSHGSCMHuCP1FLdn+Ja2OPTyzr/wC5bg/saYPxO6Ct3wLpnECIDJYXXoXOP+XKMf8Akq/eq06Bw3qXFXEEGi6Jp3rV5MfZRQAAB1Zj0CjuTSZimMV1JWOgjzBtYW7/AAz1yWubNbLYHimEtrKkFrm3DiHWGXHO4GVj3Kxp/EfpBtWYXsAbH/QfP2xXH+OfEu+46vRErSrp8b8/t7GVx02HQDyp/tPwpXr6cJL3imyhuyM+iitGkjB8uYsCftXMuN/D7iPw91WOz1uCNoJcm3u7ckxSgdQCdwR3U7/Mb0JjFXizqfdqGbrDrb65m3orHZvDNl2Vt6CYySjQO4c2+62587a80EWT4008B8OT8Z8fadw/GjNbySCW7YD3IEILk+WdlHxYUoWkdxd3cVraQyTzzOI44oxzM7E4CgdyTVyPCLw3TgLhUyXyxvrd8Fe8kXcRge7Ep8lycnuST5VT4HhLq6oFx7jcz9uqudrsdZg9GS0/vX3DR/68B87BdEVQqBVAAAwAO1edgkZY9AM19pe4w1600Hhq5u7qURokbOxz0UDJrWCQ0XOi87taXuDWi5K4V4ma3694uzrE2VtNPjtmPkXdpCPty/egdpKS4wTigtvLcarPd63PKvrV3M1xJF+YZI5V+i4H0orZpIDzMrKAcEkEb+VefsdqhWVks40Jy8NB6Lc4KEUlJHT8WgA+Ns/W6bNMu2hOVwcjBB6Gi0MzSS87Ekk5NL1ocYOaM27brSzIFRVUYuStNw25+dD3AkbkLhfielELqVnUKcYXYYFDZ4j6AzBl5QcYzv8Aau4wpqfJCri2eRn9ErOF/lFANQT0RKHBPcimB7uW3ZjGcZGDnvS5fyhixY79c1ZQcEw0W9dLN8MNQmRqJ3zgk0GkbarqEZJupm+6rL/ht1cz8IXWlu+TZ3TKo8kccw/Xmru9VY/DXelOMtXss7SW8coHxV8fs9WnrXtnZjLh8ZOouPI2HovPu29KKbGp2jQkO/7AE+t0neK2kjWvBniKxxlhZvOm35o/4g/Va5N+FmwsRpOvasUU3jzx2yt3WMLzYHzJ3+QqwGpW63WkXVq4yssTxkeeVI/rVcPwxXZg1LiLSWbeOWKQD5cyn+lQ1sbRitNIRqHDyF/qjMJnkds3XwNOTXRu6E2PyCszXPfG3RoNZ8EtaEkIeW0iF5C2N1ZDnI+a8w+tdCr46LIhR1DKeoIyDV1UwCeJ8R0cCPNKdBVuo6mOpZqwg+RuuI+BvhEeG7SPi3iS2xrEyZtreQb2iEdSO0jD/tG3Umu316sZJEijMjsAoGSTUdFRR0cIhiGQ9T3lT4titRilS6qqTcnyA4Ach+uq13V1FZ2r3EzhUUZJNVZ8X+PX4i4hPD9lLm1hYNdEHYkHKx/fc/Smrxm8VDZxnRNGlDXcuy4PuD+c/wBPvXBbONlhaZ35yTl2ZvaZj3pU2qxoMYaOE5n4j3Du+/kn/YTZgvIxSqHuj4B3n83gOHec+GbBplyYbuOQDmKnOPOnFL6KW3WOLnIbBbm7fCkexwzjGc00WIxisnqRZPGIxtvfuTNbMska8qBCBufOjFmjOcrjbfc0EtD0ozbyckgMRI7bnNVEiVKody1NymbEhKqTuRvihd8yB2WMllB2Y7Zohc9TQe5cqScV1GpKYXKFajKgHscw23z50sX9xhTTBqVyHxtyjOTSpqjIZOWJyw7mremZdNWHxXsg1zIWJ3odKaIeglnnWGCJ5ZWOFSNSzH5AbmsNR0nVdOCnUNNvLTm903EDR5+XMBVxG02uNEyxPY0hhOa6V+HJyPFq4TOOawk/RkNW6HSqh/hyUnxfl2/yEv8A5JVvK0/ZT+R/5H6LCvxHH8ZP9rfqsJf8L6iqn+A1z6r49cQWPNgSLNt/6ZQf71a+c4h+o/eqceEtz6v+KS4TOBNNdR/PPMf6V1jT9yrpHf6j6loX5snF2uGYoz/bB8iSrljcZr1YocxqfhWVMaRF6ouoWjXumTWySCN3QqrsvMFONiRkZGe2alV6vivgbKjXHfCXEfCfG1xDxKTNPcMZI7xR/DuEz1Tyx3XqPtQuC2MkRdCoCqWOTV0uPOC9O454Qn0e9VUmxz21xjJglA2YfDsR3BNUyvtPvtH1W60i+jeG4tpTFPETsHBwfmO4PcYrKNocIdQTbwN2O0PPiD/ma9A7J7SNxil7NwDZWAAgZAjQEDgOFuHUInp6GG4wJFJQ+8hyPoaaLJixBJyaV9KiYxtJyFlXuDjFNmnQkRrJLlY2Hst50k1QzRWI2Rq2PSi1v7woTAckAUXtVyyjuTVPIlSp1Ui8jENrh4QHbOGJpcusBzzDIpgv2DscAhRsoJzgUAvE2rqM5r8ozbVK2qEEnAx8KXJwqsXdC4G/KDufhTNqEeQTigt7ZiHT/XBMuR7SrjuN/wBMVc0xyTjQvAACtN4a+H+l8FcL2+LaJ9WnjV7u7K5csRkop7KOgA8snc03X+nWGqafJY6lZw3dtIMPDOgdWHyNKHAnH2mcS6Jby+sIskiAgE98bj5g08AgjIORW/0kMDKdrIQNy2XMfqvP1fUVMlW+SpJ7S5v3gg+luHckPhXwn4d4M48u+I9CaaGO4tjB6m550jJYMSrHfHs4wc/On2vV6pKemip27kLbDWwUVXWz1j+1qHlzrAXOthoh+tXaWWkS3DtgIpcn4AZ/pVKvCy8Mn4i9MvCf8e9fP+4H+9WT8bOKItE8Pr+JJQJpYzAgzvl9j+maqz4ZSeh8YOH5if8AOxg/Vh/elHaOpHttPGP6SD5uH2Wn7CUB/Y+ITkZPaWjo0k/NX1hOYEPwFfXz6JuXrjasYDm2T5VsO4NOqyZV71fxf1Dh7xsueG9S/hW8cgRZObIOQCMjt1rvGmX8Wo6dHcxHZhv8Kp1482xTxx1M+6XSGQN5fw13rtXgLxg2tcIpZ3Uubm3PoJATvt7p+37UsYVi75K2ajnN7F270Jy8sx1T9tFs1DBhNLilILBzW741zI+Lqcj0suz1Xj8QnCIg1iw4vs4sLdEWl3yj84H8Nj8wCv8AtWrD0B4z4dj4q4G1HQ3wr3ER9E5/JKPaRvowFWeM0ArqR8I11HiNPt1S5s7ihwyvjqL+7o7+06+WviFTy2jmt19oFVbYjOxxTPpkkbW3LIXLD3ADtQJobkRqbpQkqs0bRYwUdThgfiCDRbTeb2UOwPnWEVHNblWOD23TPaKBEJBIObOOXv8AOi9sfaBxUHTYIpoQQzAjY75zRURLFIEVicYzmqaUJQqnjeIXruIq7KRgg4NC57OWSMukbFd98UblA5yWXmGai4JilQzrGuM4Izn5VxGUPDIQLpMvrTmflG5PSl3ULSSJypXfvjeniW3SSRhISoxtQa8suVZW9AZEI9l3B2+NWMEtkzUVVumyRbW71zhO4F7od16a2diXsj7yfIdx5dxXX+BvHyCREtdQlEcg2MU5/Zv7/eudSQRRpIJIOcnoc4waX9YsoNQEZltY45UXHpYhysfmaccJ2hqaL3WOu3uOY/TpbndFYlgWHY2L1TLP/O2wPUaO65q49j4iaBd26yPI8eRnYcwP1FD9f8UdE0yweWKToPfl9kD+/wBKppEuuWPsWWszxJ2BJH7VhLDd3Th9T1Ce6HdCxAprdtndnuxDe8cvkPn1SvH+FrO0u+ruzk073qbJm8Q+OrnjXWSyyMbOJjyZ/Oe5oBwrMLLjjSbsnAiu4mJ+Tg1H9CAMBduwHavqRyROsyjdTkYpQnrJJ5TO83cTdabS4dBSUfsVOLMAI89SeZ4r9BLJxJZqwORUiuR+HHirpmrcPQeuS8rhAJCNyrAYOR5U4arx9oNlp8ksN0JWC522A+JJ6VscNRHPGJmG7TmvLtVSS0szqeVtntNiOarz+IezEHi9HdKFYXFlGx+YLL/QUv8AhNxE3DviNBG8nJbX+Im32D/lP9Pqaj+InFB4w40e/jPNBEghiPmATk/cmlhYpRyvCSsqEMjeTDcVk9VXiLEnVMBuA4kc8/kfkvQeHYa6fAo8PqxYlljy7uoy6hX6tJ1ubKOZT7wrfXPPC7jC01/hKzZ509O8Y5lJ/ONmH33+tdAlmihiMsjqqgZJJrWoZWzRtkZoRcdV55qIH08roZBZzSQfEKtni1w+ui+KUk8KhbXVY/W1HZZAeWX7nlb/AHGg3q7JDGGn5wp5UGMbedNXi7r9vrnFGm2lqwf1KOV3YducqFH15SaUbVWLAeW3yrDNqo44cSmZHpe/UgE+q2PB6iSXDIHy67voCQPQDxRvTy8eChK/EUbtwWIO5oVZqeUA9KP2BSNwXjDjpg0nyHNAVb9bLZOgyagSp12ovNHksR0zUKWM+VQNcgIXoJPFntUO5MjWnoWAwRjPfHlRye1k5SxjYDGc4qC8XtDnXIHaio32VpDMEpT2XtkhaEXVgSxIXGKd5okEwYRqVHZu/wA6gTWXrMzmOIAdeVdsCjo5yFeU9cWpEl03mf2lwM+VY3OkRxwswzn8uT1pxNmJQVkIHKvs/Godzp6KqgEk918qNbUq1jxA3GaRms2XtXyG3kaZQYjKAclOmRTU+nE5wuajtpssbc6oykb5x0qdtSCjmYhcWSpNBf2Gqvc6TcyWEmd4wxxn+9Zz3nEupqItT1mWSHuiMd6YW0su5M3MpwTkjqawXTMEELRIrXBpaDkVKaqJxD3NBcNCQCR11Qm2tkWSNWXljBAIXsKNXFlZRQj0By7HIIfmwtbI9O3zy1KSwbHu4FCPnBQstWCb3Qew1jiHhG+e60qNrqykbneBc5jPcgDfHxFMEvi/xLq0AsrDSbySZhj+Izcq/PO33r7HZFcYBonZafJPIIwd9z7Ro+n2lq6WLsonkD/PLpZUtdS4XUv7eqp2ueONyL2/MBr1WnRtKvnszc6jdLLeTsZZn7A+Q+A6UYs7Vs55TipEFhJbIDKoZGyCofv8aI2qSKhjQ+y3UUr1FQ6Rxc43JVZU1V72tblkPDot8FsExgg99qK28JwDg1GgjPlRKHIULVc9yoKiS6nT2RSEyllx1xvk0PaJXflyq/FulEZjIw5SWIHaojxt1Cn7VGHBARPIGZUKaRmh9HgeRPc1BbCxOhRSW6MRuKKGAuSAN/jUSWEg4xUzXlHRvAQWWHPaorwkZxRmSA+RrSIQHBdCy53A2qVr0fHPZB7mP0jgiNFwMYUY+tQ3tsnOKPT2+H9mNlU7gHyqOYGRs47+VTCRGR1GWSDJAYn5go8sedbZ7WSSzEh5DzbbHfH/AOFEZozLIWKgHyUYFavQN2B+1SiaymFRoUEkgeRl9JvjpgV71EE7LsKNC0Yn3DW0WYVM4+nevjMpPbLCyEWumLLJyMeXvnzqTLpaxMqg5JGTtRCK2POAF3JoommSCUtlZCN8EE83wrntSUNJW2NyUtpY7+7U61t3ilVkGCKIG35pC3IFzvgDYVvS2IPun7VA6VDyVVxmtbqZiuVCqBsBUu3iKMGU4I6EVnHAf5T9qlxwkD3f0od77qtlmFrBfI46mwp7QyO9YxxnbY1JjUggY/SoHFV8kl1//9k=" alt="Junkeyy channel logo" width="44" height="44"></div>
+      <div class="client-id">
+        <div class="client-label">Recent Client</div>
+        <a class="client-name" href="https://youtube.com/@junkeyy" target="_blank" rel="noopener">Junkeyy ↗</a>
+      </div>
+      <div class="client-subs"><b>3.38M</b>Subscribers</div>
+    </div>
+    <div class="lw-stage lw-orange reveal" id="lwStageLatest">
+      <div class="lw-cover" id="lwCoverLatest"></div>
+      <div class="lw-tag" id="lwTagLatest"><small>Recent Client</small>Watch in full quality</div>
+      <button class="lw-btn" id="lwBtnLatest" type="button" aria-label="Play Junkeyy video">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
       </button>
     </div>
-    <div class="lw-note">
-      <span>Tip: use the gear icon in the player to pick the highest quality.</span>
-      <a href="https://drive.google.com/file/d/1glFSeIny01GsO5IcfWkQHeUaJz2L2Lic/view" target="_blank" rel="noopener">Open original in Drive ↗</a>
+    <div class="lw-mods reveal">
+      <a class="mods-btn" href="https://itzbeolfog.github.io/Immersive-Mods/" target="_blank" rel="noopener">View My Immersive Mods <span aria-hidden="true">↗</span></a>
+      <div class="lw-stage mods-stage" id="lwStage">
+        <div class="lw-cover" id="lwCover"></div>
+        <div class="lw-tag" id="lwTag"><small>Immersive Mod</small>Watch in full quality</div>
+        <button class="lw-btn" id="lwBtn" type="button" aria-label="Play immersive mod video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <p class="mods-cap">This video is based on one of my mods. · <a href="https://drive.google.com/file/d/1glFSeIny01GsO5IcfWkQHeUaJz2L2Lic/view" target="_blank" rel="noopener">Open original in Drive ↗</a></p>
     </div>
   </div>
 </section>
@@ -1346,7 +1410,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
     <div class="showcase">
       <article class="work work-reel work-wide reveal">
         <div class="reel-embed-wrap">
-          <a class="reel-poster" href="https://youtu.be/uRcsgR-Jei8" target="_blank" rel="noopener">
+          <a class="reel-poster" href="javascript:void(0)" onclick="playReel(this,'uRcsgR-Jei8','YouTube Video Editing')">
             <img src="https://img.youtube.com/vi/uRcsgR-Jei8/maxresdefault.jpg" alt="YouTube Video Editing thumbnail" loading="lazy"
                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/uRcsgR-Jei8/hqdefault.jpg'">
             <span class="reel-poster-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
@@ -1415,7 +1479,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         <div class="highlight-info">
           <h3 class="highlight-title" data-video-title>Featured Pick 1</h3>
           <p class="highlight-sub">Hand-picked for freelance clients</p>
-          <div class="highlight-watch">▶ Watch on YouTube</div>
+          <div class="highlight-watch">▶ Play here</div>
         </div>
       </a>
       <a class="highlight-card reveal" href="https://youtu.be/lmNqb1o_XGQ" target="_blank" rel="noopener" data-video-id="lmNqb1o_XGQ">
@@ -1428,7 +1492,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         <div class="highlight-info">
           <h3 class="highlight-title" data-video-title>Featured Pick 2</h3>
           <p class="highlight-sub">Hand-picked for freelance clients</p>
-          <div class="highlight-watch">▶ Watch on YouTube</div>
+          <div class="highlight-watch">▶ Play here</div>
         </div>
       </a>
       <a class="highlight-card reveal" href="https://youtu.be/ox9uwPtcLJA" target="_blank" rel="noopener" data-video-id="ox9uwPtcLJA">
@@ -1441,20 +1505,20 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         <div class="highlight-info">
           <h3 class="highlight-title" data-video-title>Featured Pick 3</h3>
           <p class="highlight-sub">Hand-picked for freelance clients</p>
-          <div class="highlight-watch">▶ Watch on YouTube</div>
+          <div class="highlight-watch">▶ Play here</div>
         </div>
       </a>
-      <a class="highlight-card reveal" href="https://youtu.be/lRxnbPjV5Zw" target="_blank" rel="noopener" data-video-id="lRxnbPjV5Zw">
+      <a class="highlight-card reveal" href="https://youtu.be/KuAJbJnPm5c" target="_blank" rel="noopener" data-video-id="KuAJbJnPm5c" data-fixed-title>
         <div class="highlight-thumb">
-          <img src="https://img.youtube.com/vi/lRxnbPjV5Zw/maxresdefault.jpg" alt="Beolf O.G featured video thumbnail" loading="lazy"
-               onerror="this.onerror=null;this.src='https://img.youtube.com/vi/lRxnbPjV5Zw/hqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/KuAJbJnPm5c/maxresdefault.jpg" alt="Immersive Dancers Showcase thumbnail" loading="lazy"
+               onerror="this.onerror=null;this.src='https://img.youtube.com/vi/KuAJbJnPm5c/hqdefault.jpg'">
           <span class="highlight-badge">★ Featured</span>
           <span class="highlight-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         </div>
         <div class="highlight-info">
-          <h3 class="highlight-title" data-video-title>Featured Pick 4</h3>
-          <p class="highlight-sub">Hand-picked for freelance clients</p>
-          <div class="highlight-watch">▶ Watch on YouTube</div>
+          <h3 class="highlight-title" data-video-title>Immersive Dancers Showcase</h3>
+          <p class="highlight-sub">Based on one of my mods</p>
+          <div class="highlight-watch">▶ Play here</div>
         </div>
       </a>
     </div>
@@ -1516,7 +1580,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 01</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/Ra6QoSLkUW0" target="_blank" rel="noopener" data-video-id="Ra6QoSLkUW0">
@@ -1528,7 +1592,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 02</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/2GDlx80bRnI" target="_blank" rel="noopener" data-video-id="2GDlx80bRnI">
@@ -1540,7 +1604,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 03</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/MRrZGtFCtGw" target="_blank" rel="noopener" data-video-id="MRrZGtFCtGw">
@@ -1552,7 +1616,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 04</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/pAt6UecAJyw" target="_blank" rel="noopener" data-video-id="pAt6UecAJyw">
@@ -1564,7 +1628,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 05</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/mA8aBJBhLTk" target="_blank" rel="noopener" data-video-id="mA8aBJBhLTk">
@@ -1576,7 +1640,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 06</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/rmvKKR5E-Rw" target="_blank" rel="noopener" data-video-id="rmvKKR5E-Rw">
@@ -1588,7 +1652,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 07</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/4G5BWAMAC2g" target="_blank" rel="noopener" data-video-id="4G5BWAMAC2g">
@@ -1600,7 +1664,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 08</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/IAuaU8G8xoM" target="_blank" rel="noopener" data-video-id="IAuaU8G8xoM">
@@ -1612,7 +1676,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 09</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/Wz-6DZj_gTs" target="_blank" rel="noopener" data-video-id="Wz-6DZj_gTs">
@@ -1624,7 +1688,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 10</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/X9r4Erkxhdc" target="_blank" rel="noopener" data-video-id="X9r4Erkxhdc">
@@ -1636,7 +1700,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 11</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/aAvRmhXWooI" target="_blank" rel="noopener" data-video-id="aAvRmhXWooI">
@@ -1648,7 +1712,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 12</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/hgp8SQi-dHM" target="_blank" rel="noopener" data-video-id="hgp8SQi-dHM">
@@ -1660,7 +1724,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 13</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/hVY_zyQPqp0" target="_blank" rel="noopener" data-video-id="hVY_zyQPqp0">
@@ -1672,7 +1736,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 14</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/La2t5OsG8R0" target="_blank" rel="noopener" data-video-id="La2t5OsG8R0">
@@ -1684,7 +1748,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 15</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/GyTRp6IrQho" target="_blank" rel="noopener" data-video-id="GyTRp6IrQho">
@@ -1696,7 +1760,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 16</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/Hyj6YLaRrWM" target="_blank" rel="noopener" data-video-id="Hyj6YLaRrWM">
@@ -1708,7 +1772,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 17</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/r2i6pD2b7zA" target="_blank" rel="noopener" data-video-id="r2i6pD2b7zA">
@@ -1720,7 +1784,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 18</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/ljpMA2ptj3A" target="_blank" rel="noopener" data-video-id="ljpMA2ptj3A">
@@ -1732,7 +1796,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 19</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
       <a class="video-card reveal" href="https://youtu.be/qXWZx8jSD_I" target="_blank" rel="noopener" data-video-id="qXWZx8jSD_I">
@@ -1744,7 +1808,7 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
         </div>
         <div class="video-info">
           <h3 class="video-title" data-video-title>Beolf O.G — Video 20</h3>
-          <div class="video-watch">▶ Watch on YouTube</div>
+          <div class="video-watch">▶ Play here</div>
         </div>
       </a>
     </div>
@@ -2145,7 +2209,8 @@ select.hm-input option{background:#15100a;color:#f9f2e7}
 function playReel(el, videoId, title){
   const wrap = el.parentElement;
   const iframe = document.createElement('iframe');
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1`;
+  iframe.referrerPolicy = 'strict-origin-when-cross-origin';
   iframe.title = title || 'Video';
   iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
   iframe.allowFullscreen = true;
@@ -2175,6 +2240,7 @@ function playInstagramReel(el, permalink){
 document.querySelectorAll('.video-card[data-video-id], .highlight-card[data-video-id]').forEach(card=>{
   const id = card.getAttribute('data-video-id');
   const titleEl = card.querySelector('[data-video-title]');
+  if (card.hasAttribute('data-fixed-title')) return; // keep my own title
   fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`)
     .then(res => { if(!res.ok) throw new Error('oembed failed'); return res.json(); })
     .then(data => { if (data && data.title) titleEl.textContent = data.title; })
@@ -2637,7 +2703,7 @@ async function startMusic(){
     if(current){
       player.innerHTML='<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(current.videoId)+'?autoplay=0&rel=0"'+
         ' title="'+esc(current.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"'+
-        ' allowfullscreen></iframe>';
+        ' referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
       title.textContent=current.title || 'Live now';
       desc.textContent='Beolf O.G is live on YouTube right now.';
       watch.href='https://youtu.be/'+encodeURIComponent(current.videoId);
@@ -3333,7 +3399,7 @@ async function startMusic(){
 
 
 <canvas id="lwFx" aria-hidden="true"></canvas>
-<div id="lwFull" aria-label="Latest work video"></div>
+<div id="lwFull" aria-label="Immersive mod video"></div>
 <button id="lwClose" type="button">✕ Close</button>
 <script>
 (function(){
@@ -3445,7 +3511,7 @@ async function startMusic(){
       el.src = VIDEO.type==='youtube'
         ? 'https://www.youtube.com/embed/'+VIDEO.id+'?autoplay=1&rel=0&modestbranding=1&vq=hd1080'
         : 'https://drive.google.com/file/d/'+VIDEO.id+'/preview';
-      el.allow='autoplay; fullscreen; picture-in-picture; encrypted-media'; el.allowFullscreen=true; el.title='My Latest Work';
+      el.allow='autoplay; fullscreen; picture-in-picture; encrypted-media'; el.referrerPolicy='strict-origin-when-cross-origin'; el.allowFullscreen=true; el.title='Immersive mod video';
     }
     el.className='lw-media'; full.appendChild(el);
   }
@@ -3575,6 +3641,317 @@ async function startMusic(){
   });
 })();
 </script>
+<script>
+(function(){
+  /* ---------- JUNKEYY PANEL: same sequence, JK logo instead of the disc ---------- */
+  /* VIDEO SOURCE ----------
+     Google Drive's player can't be auto-clicked from another page (browser security),
+     so it needs one click on Drive's own play button. For true autoplay switch to:
+       {type:'youtube', id:'YOUTUBE_VIDEO_ID'}   (unlisted is fine)
+       {type:'mp4', src:'https://your-host/video.mp4'}                                  */
+  const VIDEO = { type:'drive', id:'1iR6ObCtftjCX9ZnmghkOGUQbN1QWXwVp' };
 
+  const stage = document.getElementById('lwStageLatest');
+  if(!stage) return;
+  const btn = document.getElementById('lwBtnLatest'), tag = document.getElementById('lwTagLatest'),
+        fx = document.getElementById('lwFx'), full = document.getElementById('lwFull'),
+        closeBtn = document.getElementById('lwClose'), ctx = fx.getContext('2d',{desynchronized:true});
+
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t;
+  const easeInOut=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const easeOutBack=t=>{const c1=1.7,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)};
+  const easeOutCubic=t=>1-Math.pow(1-t,3);
+
+  let state='idle', dpr=1, VW=0, VH=0;
+  function sizeCanvas(){
+    dpr=Math.min(window.devicePixelRatio||1,dprCap); VW=window.innerWidth; VH=window.innerHeight;
+    fx.width=Math.round(VW*dpr); fx.height=Math.round(VH*dpr);
+  }
+
+  /* ---------- MINECRAFT MUSIC DISC (16x16 pixel sprite, extruded like a dropped item, disco label) ---------- */
+  let dprCap=1.5, maxSamples=3;
+  const SPR=16, OUTER=7.65, DEPTH=1.0, LAYERS=7;
+  const faceC=document.createElement('canvas'), silC=document.createElement('canvas');
+  faceC.width=faceC.height=silC.width=silC.height=SPR;
+  const faceX=faceC.getContext('2d'), silX=silC.getContext('2d');
+  /* pixel map: 0 empty · 1 outline · 2 vinyl · 3 groove · 4 sheen · 5 label ring · 6 label · 7 centre hole */
+  const MAP=[];
+  for(let y=0;y<SPR;y++) for(let x=0;x<SPR;x++){
+    const dx=x+.5-SPR/2, dy=y+.5-SPR/2, d=Math.hypot(dx,dy); let k;
+    if(d>OUTER) k=0;
+    else if(d<=1.45) k=7;
+    else if(d<=2.95) k=6;
+    else if(d<=3.9) k=5;
+    else if(d>6.75) k=1;
+    else if(Math.abs(dx-dy)<1.3) k=4;
+    else if((d>4.55&&d<=5.05)||(d>5.6&&d<=6.1)) k=3;
+    else k=2;
+    MAP.push(k);
+  }
+  silX.fillStyle='#07070b';
+  MAP.forEach((k,i)=>{ if(k&&k!==7) silX.fillRect(i%SPR,(i/SPR)|0,1,1); });
+  function paintFace(hue){                         // label + sheen change colour every frame (disco!)
+    const H=hue%360, cols=[null,'#05050a','#17171f','#232330','hsl('+((H+150)%360)+',70%,52%)','hsl('+H+',100%,38%)'];
+    const L1='hsl('+H+',100%,60%)', L2='hsl('+((H+40)%360)+',100%,72%)';
+    faceX.clearRect(0,0,SPR,SPR);
+    for(let i=0;i<MAP.length;i++){
+      const k=MAP[i]; if(!k||k===7) continue;
+      const x=i%SPR, y=(i/SPR)|0;
+      faceX.fillStyle = k===6 ? (((x+y)&1)?L1:L2) : cols[k];
+      faceX.fillRect(x,y,1,1);
+    }
+  }
+  /* draws the disc spinning around its vertical axis (ang), outer ring radius = R px */
+  function discAt(cx,cy,R,ang,alpha,roll,solid){
+    const unit=R/OUTER, half=unit*SPR/2, c=Math.cos(ang), s=Math.sin(ang);
+    ctx.save(); ctx.globalAlpha=alpha; ctx.translate(cx,cy); if(roll) ctx.rotate(-roll); ctx.imageSmoothingEnabled=false;
+    if(solid){                                      // dark edge = thickness of the disc
+      for(let i=0;i<LAYERS;i++){
+        const z=(i/(LAYERS-1)*2-1)*DEPTH;
+        ctx.save(); ctx.translate(z*s*unit,0); ctx.scale(c,1); ctx.drawImage(silC,-half,-half,half*2,half*2); ctx.restore();
+      }
+      ctx.translate((c>=0?DEPTH:-DEPTH)*s*unit,0);
+    }
+    ctx.scale(c,1); ctx.drawImage(faceC,-half,-half,half*2,half*2);
+    ctx.restore();
+  }
+  function discBlur(cx,cy,R,ang,omega,alpha,roll){
+    const steps=maxSamples>=3?10:(maxSamples===2?5:2), span=Math.min(omega*.018,3.2);
+    if(omega>6) for(let i=steps;i>=1;i--) discAt(cx,cy,R,ang-span*i/steps,alpha*.07+.02,roll,false);
+    discAt(cx,cy,R,ang,alpha*(omega>25?.6:1),roll,true);
+  }
+  function drawGlow(cx,cy,R,a,hue){
+    const g=ctx.createRadialGradient(cx,cy,R*.85,cx,cy,R*1.3);
+    g.addColorStop(0,'hsla('+hue+',100%,60%,'+a+')');
+    g.addColorStop(.5,'hsla('+((hue+90)%360)+',100%,60%,'+(a*.5)+')');
+    g.addColorStop(1,'hsla('+((hue+180)%360)+',100%,60%,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R*1.3,0,7); ctx.fill();
+  }
+  /* pixel confetti burst when the button turns into the disc */
+  const PART=[];
+  function burst(x,y){
+    PART.length=0;
+    for(let i=0;i<46;i++){ const a=Math.random()*6.2832, v=160+Math.random()*460;
+      PART.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-170,s:4+(Math.random()*7|0),h:Math.random()*360}); }
+  }
+  function drawParts(dt,k){
+    ctx.globalAlpha=Math.max(0,1-k);
+    for(const p of PART){ p.vy+=950*dt; p.x+=p.vx*dt; p.y+=p.vy*dt; ctx.fillStyle='hsl('+p.h+',100%,60%)'; ctx.fillRect(p.x|0,p.y|0,p.s,p.s); }
+    ctx.globalAlpha=1;
+  }
+
+  /* ---------- JK LOGO COIN (replaces the Minecraft disc): the play button spins and turns into the Junkeyy logo ---------- */
+  const logoImg=new Image(); const _li=document.querySelector('.client-logo img'); if(_li) logoImg.src=_li.src;
+  function paintFace(){}
+  function discAt(cx,cy,R,ang,alpha,roll,solid){
+    const c=Math.cos(ang), s=Math.sin(ang), ac=Math.max(Math.abs(c),.02), T=R*.09;
+    ctx.save(); ctx.globalAlpha=alpha; ctx.translate(cx,cy); if(roll) ctx.rotate(-roll);
+    if(solid){                                      // coin edge = thickness
+      for(let i=0;i<7;i++){
+        const z=(i/6*2-1)*T;
+        ctx.save(); ctx.translate(z*s,0); ctx.scale(ac,1); ctx.fillStyle=(i%2)?'#c2410c':'#ea580c';
+        ctx.beginPath(); ctx.arc(0,0,R,0,6.2832); ctx.fill(); ctx.restore();
+      }
+      ctx.translate((c>=0?T:-T)*s,0);
+    }
+    ctx.scale(ac,1);
+    ctx.beginPath(); ctx.arc(0,0,R,0,6.2832);
+    ctx.save(); ctx.clip();
+    if(logoImg.complete&&logoImg.naturalWidth) ctx.drawImage(logoImg,-R,-R,R*2,R*2); else { ctx.fillStyle='#ff8a00'; ctx.fillRect(-R,-R,R*2,R*2); }
+    ctx.restore();
+    ctx.lineWidth=Math.max(2,R*.045); ctx.strokeStyle='rgba(255,255,255,.92)';
+    ctx.beginPath(); ctx.arc(0,0,R-ctx.lineWidth/2,0,6.2832); ctx.stroke();
+    ctx.restore();
+  }
+  function drawPlayBtn(cx,cy,R,ang,a){
+    const ac=Math.max(Math.abs(Math.cos(ang)),.02);
+    ctx.save(); ctx.globalAlpha=a; ctx.translate(cx,cy); ctx.scale(ac,1);
+    const g=ctx.createLinearGradient(-R,-R,R,R); g.addColorStop(0,'#ffc400'); g.addColorStop(1,'#ff6a00');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,R,0,6.2832); ctx.fill();
+    ctx.lineWidth=R*.07; ctx.strokeStyle='#fff'; ctx.stroke();
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(-R*.2,-R*.34); ctx.lineTo(-R*.2,R*.34); ctx.lineTo(R*.38,0); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function drawGlow(cx,cy,R,a){
+    const g=ctx.createRadialGradient(cx,cy,R*.85,cx,cy,R*1.3);
+    g.addColorStop(0,'hsla(32,100%,58%,'+a+')'); g.addColorStop(.5,'hsla(46,100%,55%,'+(a*.5)+')'); g.addColorStop(1,'hsla(20,100%,55%,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R*1.3,0,7); ctx.fill();
+  }
+  function burst(x,y){
+    PART.length=0;
+    for(let i=0;i<46;i++){ const a=Math.random()*6.2832, v=160+Math.random()*460;
+      PART.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-170,s:4+(Math.random()*7|0),h:22+Math.random()*38}); }
+  }
+
+  /* ---------- video ---------- */
+  function mountVideo(){
+    const old=full.querySelector('.lw-media'); if(old) old.remove();
+    let el;
+    if(VIDEO.type==='mp4'){
+      el=document.createElement('video'); el.src=VIDEO.src; el.controls=true; el.playsInline=true; el.autoplay=true;
+      const p=el.play&&el.play(); if(p&&p.catch) p.catch(()=>{});
+    } else {
+      el=document.createElement('iframe');
+      el.src = VIDEO.type==='youtube'
+        ? 'https://www.youtube.com/embed/'+VIDEO.id+'?autoplay=1&rel=0&modestbranding=1&vq=hd1080'
+        : 'https://drive.google.com/file/d/'+VIDEO.id+'/preview';
+      el.allow='autoplay; fullscreen; picture-in-picture; encrypted-media'; el.referrerPolicy='strict-origin-when-cross-origin'; el.allowFullscreen=true; el.title='Junkeyy video';
+    }
+    el.className='lw-media'; full.appendChild(el);
+  }
+  function askFullscreen(){
+    const el=document.documentElement, fn=el.requestFullscreen||el.webkitRequestFullscreen;
+    if(fn){ try{ const p=fn.call(el); if(p&&p.catch) p.catch(()=>{}); }catch(e){} }
+  }
+  function exitFullscreen(){
+    if(document.fullscreenElement||document.webkitFullscreenElement){
+      const fn=document.exitFullscreen||document.webkitExitFullscreen; try{ const p=fn.call(document); if(p&&p.catch) p.catch(()=>{}); }catch(e){}
+    }
+  }
+  function showPlaying(){
+    state='playing'; pauseMusic();
+    fx.style.display='none'; full.style.display='block'; full.style.clipPath='none';
+    closeBtn.style.display='block'; requestAnimationFrame(()=>closeBtn.classList.add('on'));
+  }
+  function closeAll(){
+    state='idle';
+    exitFullscreen();
+    const m=full.querySelector('.lw-media'); if(m) m.remove();
+    full.style.display='none'; full.style.clipPath='inset(0 100% 0 0)';
+    fx.style.display='none'; closeBtn.classList.remove('on'); closeBtn.style.display='none';
+    btn.style.visibility='visible'; tag.style.opacity=1;
+    unlockScroll(); resumeBg();
+  }
+  let pausedBg=[], musWas=false, musVol=1, musFade=null;
+  /* background music: fade out + pause while the project plays, resume on close (only if it was on) */
+  function refreshMusicBtn(){ if(typeof updateMusicButton==='function') updateMusicButton(); }
+  function pauseMusic(){
+    const mus=document.getElementById('bgMusic'); if(!mus||musWas||mus.paused) return;
+    musWas=true; musVol=mus.volume; let i=0; clearInterval(musFade);
+    musFade=setInterval(()=>{ i++; mus.volume=Math.max(0,musVol*(1-i/10));
+      if(i>=10){ clearInterval(musFade); mus.pause(); mus.volume=musVol; refreshMusicBtn(); } },40);
+  }
+  function resumeMusic(){
+    const mus=document.getElementById('bgMusic'); clearInterval(musFade);
+    if(!mus||!musWas) return; musWas=false; mus.volume=musVol;
+    const p=mus.play(); if(p&&p.catch) p.catch(()=>{}); refreshMusicBtn();
+  }
+  function pauseBg(){ pauseMusic(); document.querySelectorAll('video').forEach(v=>{ if(!v.paused && !full.contains(v)){ v.pause(); pausedBg.push(v); } }); }
+  function resumeBg(){ resumeMusic(); pausedBg.forEach(v=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }); pausedBg=[]; }
+  function lockScroll(){ const sb=window.innerWidth-document.documentElement.clientWidth; if(sb>0) document.body.style.paddingRight=sb+'px'; document.documentElement.style.overflow='hidden'; }
+  function unlockScroll(){ document.documentElement.style.overflow=''; document.body.style.paddingRight=''; }
+  closeBtn.addEventListener('click', function(){ if(state==='playing') closeAll(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && state==='playing') closeAll(); });
+  ['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{
+    if(state==='playing' && !(document.fullscreenElement||document.webkitFullscreenElement)) closeAll();
+  }));
+  window.addEventListener('resize', ()=>{ if(state==='anim') sizeCanvas(); });
+
+  /* ---------- the sequence: button -> Minecraft music disc -> flies out -> sweeps right revealing the video ---------- */
+  btn.addEventListener('click', function(){
+    if(state!=='idle') return;
+    lockScroll();
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      btn.style.visibility='hidden'; mountVideo(); askFullscreen(); showPlaying(); return;
+    }
+    state='anim'; sizeCanvas(); fx.style.display='block';
+    const r=btn.getBoundingClientRect(), bx=r.left+r.width/2, by=r.top+r.height/2, r0=r.width/2;
+    btn.style.visibility='hidden'; tag.style.opacity=0; burst(bx,by);
+
+    const T_A=750, T_B=1400, T_C=1750, T_D=2650, T_E=3800, TAU=Math.PI*2;
+    const rPop=r0*2.9;
+    let curCx=bx, prevCx=bx, roll=0, t0=null, last=null, spin=0, w=0, fsAsked=false, mounted=false, ema=16, d1=false, d2=false, bgPaused=false,
+        hold=false, spinC=0, v0=0, tgt=0;
+
+    function frame(now){
+      if(state!=='anim') return;
+      if(t0===null){t0=now;last=now}
+      if(window.innerWidth!==VW||window.innerHeight!==VH) sizeCanvas();
+      const t=now-t0, raw=now-last, dt=Math.min(raw/1000,.05); last=now;
+      const vx=(curCx-prevCx)/Math.max(dt,.001); prevCx=curCx;          // px/s, negative = moving left
+      const target=clamp(-vx*.0006,-.4,.4);                             // lean the top toward the direction of travel
+      roll+=(target-roll)*(1-Math.exp(-dt*8));
+      if(t>350){                                    // adaptive quality: fewer blur ghosts / lower resolution if the device struggles
+        ema=ema*.9+raw*.1;
+        if(ema>26&&!d1){d1=true;maxSamples=2}
+        if(ema>32&&!d2){d2=true;maxSamples=1;dprCap=1;sizeCanvas()}
+      }
+      if(!mounted && t>=T_B){mounted=true;mountVideo();full.style.display='block'}   // load the player early, hidden
+      if(!bgPaused && t>=T_D){bgPaused=true;pauseBg()}
+      ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,VW,VH);
+      const hue=(t*.25)%360; paintFace(hue);
+      if(t<1300) drawParts(dt,t/1300);
+
+      /* disc spin: fast spin-up, slows down, then settles facing the screen exactly (whole turns) */
+      let ang, om;
+      if(t>=T_C && !hold){ hold=true; spinC=spin; v0=w; tgt=Math.ceil((spinC+v0*(T_D-T_C)/1000*.7)/TAU)*TAU; }
+      if(t<T_C){
+        if(t<T_A) w=62*(t/T_A);
+        else if(t<T_B) w=lerp(62,26,easeOutCubic((t-T_A)/(T_B-T_A)));
+        else w=lerp(26,9,(t-T_B)/(T_C-T_B));
+        spin+=w*dt; ang=spin; om=w;
+      } else if(t<T_D){
+        const dur=(T_D-T_C)/1000, u=(t-T_C)/(T_D-T_C), u2=u*u, u3=u2*u;
+        ang=spinC+(u3-2*u2+u)*v0*dur+(-2*u3+3*u2)*(tgt-spinC);
+        om=Math.abs(((3*u2-4*u+1)*v0*dur+(-6*u2+6*u)*(tgt-spinC))/dur);
+      } else { ang=tgt+.07*Math.sin((t-T_D)*.011); om=.6; }
+
+      const Rfull=.62*VH, cx0=.34*VH, cyM=VH/2;
+
+      if(t<T_A){                                   // 1) button pops into a spinning music disc
+        const p=t/T_A, R=r0*(.55+.65*easeOutBack(clamp(t/260,0,1))+.08*p);
+        drawGlow(bx,by,R,.1+.3*p,hue); discBlur(bx,by,R,ang,om,clamp(t/300,0,1),roll); if(t<300) drawPlayBtn(bx,by,R,ang,1-t/300);
+      } else if(t<T_B){                            // 2) disc lifts up, still spinning
+        const q=(t-T_A)/(T_B-T_A), R=r0*lerp(1.28,1.55,easeOutCubic(q));
+        drawGlow(bx,by,R,.4,hue); discBlur(bx,by,R,ang,om,1,roll);
+      } else if(t<T_C){                            // 3) pops out of the player
+        const p=(t-T_B)/(T_C-T_B), R=lerp(r0*1.55,rPop,easeOutBack(p));
+        drawGlow(bx,by,R,.3,hue); discBlur(bx,by,R,ang,om,1,roll);
+        if(!fsAsked && t>T_C-250){fsAsked=true;askFullscreen()}
+      } else if(t<T_D){                            // 4) grows to screen size, flies to the left
+        const e=easeInOut((t-T_C)/(T_D-T_C)), R=lerp(rPop,Rfull,e);
+        const cx=lerp(bx,cx0,e), cy=lerp(by,cyM,e); curCx=cx;
+        if(!fsAsked){fsAsked=true;askFullscreen()}
+        drawGlow(cx,cy,R,.3,hue); discBlur(cx,cy,R,ang,om,1,roll);
+      } else if(t<T_E){                            // 5) rolls right, revealing the fullscreen video
+        const e=easeInOut((t-T_D)/(T_E-T_D)), cx=lerp(cx0,VW+Rfull*1.2,e); curCx=cx;
+        const edge=clamp(cx-.36*VH,0,VW+2);
+        full.style.clipPath='inset(0 '+Math.max(0,VW-edge)+'px 0 0)';
+        drawGlow(cx,cyM,Rfull,.3,hue); discBlur(cx,cyM,Rfull,ang,om,1,roll);
+      } else { showPlaying(); return; }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+})();
+</script>
+
+<script>
+/* Every video card plays in-page instead of opening YouTube (needs http/https hosting; file:// gives YouTube Error 153). */
+document.addEventListener('click',function(e){
+  var card=e.target.closest('.highlight-card[data-video-id], .video-card[data-video-id], .archive-card[href*="youtu"]');
+  if(!card||e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0) return;
+  var id=card.getAttribute('data-video-id');
+  if(!id){var m=(card.getAttribute('href')||'').match(/youtu\.be\/([\w-]{6,})/); id=m&&m[1];}
+  if(!id) return;
+  e.preventDefault();
+  if(card.querySelector('iframe')) return;
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&playsinline=1';
+  f.referrerPolicy='strict-origin-when-cross-origin';
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  f.allowFullscreen=true; f.title='Video player';
+  var thumb=card.querySelector('.highlight-thumb, .video-thumb');
+  if(thumb){
+    f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5;background:#000';
+    thumb.appendChild(f);
+    thumb.querySelectorAll('img,.highlight-badge,.highlight-play,.video-order,.video-play').forEach(function(x){x.style.visibility='hidden';});
+  } else {
+    var img=card.querySelector('img');
+    f.style.cssText='display:block;width:100%;aspect-ratio:16/9;border:0;background:#000';
+    if(img){img.style.display='none'; img.parentNode.insertBefore(f,img);} else card.appendChild(f);
+  }
+});
+</script>
 </body>
 </html>
